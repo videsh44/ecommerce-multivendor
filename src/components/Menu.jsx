@@ -20,6 +20,7 @@ import history from "../history";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { withCookies } from "react-cookie";
+import NavbarIndex from "./navbar/NavbarIndex";
 
 const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
@@ -54,7 +55,7 @@ const MenuIndex = (props) => {
 
   return (
     <div>
-      <Layout>
+      <Layout style={{ background: "#fff" }}>
         <Header
           className="header"
           style={{ position: "fixed", zIndex: 12345, width: "100%" }}
@@ -83,6 +84,17 @@ const MenuIndex = (props) => {
               </Dropdown.Button>
             </div>
           </div>
+        </Header>
+        <Header
+          style={{
+            //  position: "fixed",
+            //  top: "48px",
+            marginTop: 48,
+            width: "100%",
+            background: "#FFFFFF",
+          }}
+        >
+          <NavbarIndex />
         </Header>
         <Content
           className="site-layout"

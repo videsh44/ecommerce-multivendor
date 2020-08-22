@@ -7,8 +7,7 @@ import MenuIndex from "./Menu";
 import { loginUser } from "../actions/authActions";
 import history from "../history";
 import { connect } from "react-redux";
-
-import navbar from "./navbar/navbarIndex";
+import Home from "../components/home/Home";
 
 const PrivateRoute = ({ component: Component, user, dispatch, ...rest }) => {
   {
@@ -45,7 +44,7 @@ const Routing = (props) => {
           <PrivateRoute
             path="/"
             exact
-            component={navbar}
+            component={Home}
             user={user}
             dispatch={dispatch}
           />
