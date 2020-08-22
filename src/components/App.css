@@ -16,6 +16,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ff8c00;
 }
+*
+{
+  font-family: 'Roboto',sans-serif;
+}
 
 .header {
   background: #d8e3e8;
@@ -28,7 +32,25 @@
   margin-left: 4px;
   font-weight: 600;
 }
-
+.ant-menu-submenu-title
+{
+  font-size: 1.2em;
+}
+.ant-menu-horizontal {
+    line-height: 46px;
+    white-space: nowrap;
+    border: 0;
+    border-bottom: none !important; 
+    -webkit-box-shadow: none;
+        margin-top: 1.2%;
+    box-shadow: none;
+  }
 .menu-item-icon {
   color: #ff7f18;
+}
+.ant-menu-item,
+.ant-menu-item>a,
+.ant-menu-submenu-title
+{
+  color: #45ab67;
 }
