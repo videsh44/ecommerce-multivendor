@@ -4,17 +4,13 @@ import { MailOutlined, AppstoreOutlined, SettingOutlined, ShoppingCartOutlined,C
 
 const { SubMenu } = Menu;
 const navbarIndex = (props) => {
- const handleClick = e => {
-    console.log('click ', e);
-    this.setState({ current: e.key });
-  };
     return(
     <div className="menuBar" style={{width:"90%", display:'flex', background:'#fff',textAlign:'center',marginLeft: "7%"}}>
     <div className="Logo" style={{width:"10%"}}>
     <img src="https://winmagictoys.com/wp-content/uploads/2018/09/dummy-logo.png" width="80px" alt="logo"/>
     </div>
     <div className="menuItems" style={{width:"80%"}}>
-      <Menu onClick={handleClick}  mode="horizontal">
+      <Menu  mode="horizontal">
         <Menu.Item key="mail" icon={<MailOutlined />}>
         <a href="#" target="_blank" rel="noopener noreferrer"style={{color: "#45ab67",fontSize:'1.2em'}}>
             Home
