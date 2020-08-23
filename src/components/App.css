@@ -16,9 +16,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ff8c00;
 }
-*
-{
-  font-family: 'Roboto',sans-serif;
+* {
+  font-family: "Roboto", sans-serif;
 }
 
 .header {
@@ -32,6 +31,8 @@
   margin-left: 4px;
   font-weight: 600;
 }
+
+/**
 .ant-menu-submenu-title
 {
   font-size: 1.2em;
@@ -61,13 +62,14 @@
     border-radius: 10px;
     text-transform: capitalize;
 }
-.ant-btn-primary
-{
-    background: rgb(69, 171, 103);
-    border-color: rgb(49, 181, 171);
-    width: 85%;
-    font-size: 110%;
-    height: 53px;
+
+*/
+.login-form-btn {
+  background: rgb(69, 171, 103);
+  border-color: rgb(49, 181, 171);
+  width: 85%;
+  font-size: 110%;
+  height: 53px;
   font-size: 16px;
   border-radius: 10px;
 }

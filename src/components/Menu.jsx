@@ -7,6 +7,7 @@ import {
   message,
   Tooltip,
   Divider,
+  Popconfirm,
 } from "antd";
 import {
   PhoneOutlined,
@@ -48,7 +49,14 @@ const MenuIndex = (props) => {
         <ToolOutlined className="menu-item-icon" /> My Account
       </Menu.Item>
       <Menu.Item key="2">
-        <LogoutOutlined className="menu-item-icon" /> Sign out
+        <Popconfirm
+          title="Are you sure you want log out ?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={onLogOutUser}
+        >
+          <LogoutOutlined className="menu-item-icon" /> Sign out
+        </Popconfirm>
       </Menu.Item>
     </Menu>
   );

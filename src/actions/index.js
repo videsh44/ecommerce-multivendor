@@ -1,7 +1,12 @@
 import crmApi from "../apis";
 
 export const adminLogin = async (formValues) => {
-  const response = await crmApi().post("/auth/login", formValues);
+  const response = await crmApi().post("/user/login", formValues);
+  return response;
+};
+
+export const adminSignup = async (formValues) => {
+  const response = await crmApi().post("/user/signup", formValues);
   return response;
 };
 

@@ -6,7 +6,7 @@ import { adminLogin } from "../src/actions";
 import history from "./history";
 
 import "antd/dist/antd.css";
-import  SignUp from "./SignUp";
+import SignUp from "./SignUp";
 
 const Login = (props) => {
   //const [isLoged, setIsLoged] = useState(false);
@@ -47,7 +47,6 @@ const Login = (props) => {
   }, [props.userAuth.isSignedIn]);
 
   const handleLogin = async () => {
-    /**
     if (email === "" || email === null || email === undefined) {
       message.warning("Please Enter Email");
       return;
@@ -69,32 +68,11 @@ const Login = (props) => {
       console.log(response);
       if (response.status === 200) {
         props.loginUser(response.data);
-        history.push("/dashboard");
+        history.push("/home");
       }
     } catch (error) {
-      message.warning(error.response.data.message);
+      message.warning(error.response.data.error.message);
     }
-
-    
-    if (email === "" || email === " " || email === null || email === undefined)
-      if (
-        password === "" ||
-        password === " " ||
-        password === null ||
-        password === undefined
-      ) {
-        props.loginUser(email, password);
-        //document.location.assign("/home");
-        history.push("/home");
-        message.success("login sucessfully");
-      } else {
-        message.warning("please enter valid user");
-        //props.logoutUser();
-      }
-    if (props.userAuth.isSignedIn) {
-      history.push("/dashboard");
-    }
-    */
   };
 
   const onUserNameChange = (e) => {
@@ -108,14 +86,17 @@ const Login = (props) => {
   };
 
   return (
-    <div style={{backgroundImage:"url('https://i.pinimg.com/originals/bc/27/60/bc27609dca848b8853968d5cf11e6692.jpg')", 
-    width:'100%',
-    backgroundRepeat: "repeat-x",
-    backgroundSize:"cover",
-    minHeight:'100vh'
-
-  }}>
-      <div className="container" >
+    <div
+      style={{
+        backgroundImage:
+          "url('https://i.pinimg.com/originals/bc/27/60/bc27609dca848b8853968d5cf11e6692.jpg')",
+        width: "100%",
+        backgroundRepeat: "repeat-x",
+        backgroundSize: "cover",
+        minHeight: "100vh",
+      }}
+    >
+      <div className="container">
         <div
           style={{
             maxWidth: "520px",
@@ -124,13 +105,16 @@ const Login = (props) => {
             background: "#fff",
             boxShadow: "-1px 4px 28px 0px rgba(0,0,0,0.75)",
             marginTop: "15%",
-            color:'#000'
+            color: "#000",
           }}
         >
           {screenType === "login" ? (
             <div>
               <div style={{ textAlign: "center" }}>
-                <img src="https://img.icons8.com/carbon-copy/2x/login-rounded-right.png" width="100px"/>
+                <img
+                  src="https://img.icons8.com/carbon-copy/2x/login-rounded-right.png"
+                  width="100px"
+                />
               </div>
               <div style={{ margin: "30px" }}>
                 <label>Username</label>
@@ -157,15 +141,22 @@ const Login = (props) => {
                 <Button
                   onClick={handleLogin}
                   type="primary"
-                  className="login-form-button"
-                 
+                  className="login-form-btn"
                 >
                   <Icon type="login" />
                   Log in
                 </Button>
               </div>
-              <div style={{ textAlign: "center", marginTop: "40px", fontSize:'16px'}}>
-              <span style={{textAlign:'center', marginTop: "40px"}}><h6>OR</h6></span>
+              <div
+                style={{
+                  textAlign: "center",
+                  marginTop: "40px",
+                  fontSize: "16px",
+                }}
+              >
+                <span style={{ textAlign: "center", marginTop: "40px" }}>
+                  <h6>OR</h6>
+                </span>
                 <Button onClick={() => setScreenType("signup")}>
                   No account? Create one here
                 </Button>
@@ -173,8 +164,10 @@ const Login = (props) => {
             </div>
           ) : (
             <div>
-              <SignUp />
-              <div style={{ textAlign: "center", marginTop: "40px !important" }}>
+              <SignUp setScreenType={setScreenType} />
+              <div
+                style={{ textAlign: "center", marginTop: "40px !important" }}
+              >
                 <Button onClick={() => setScreenType("login")}>
                   Already a user Login
                 </Button>
