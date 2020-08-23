@@ -8,6 +8,7 @@ import {
   CaretDownOutlined,
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
+import { appLogo } from "../../assets/IconAssets";
 
 const { SubMenu } = Menu;
 
@@ -37,25 +38,22 @@ const NavbarIndex = (props) => {
     >
       {/**.....................logo starts ............................ */}
       <div style={{ width: "20%" }}>
-        <div className="logo" />
+        <img src={appLogo} style={{ height: "44px", width: "100%" }} />
+        {/**  <div className="logo" /> */}
       </div>
       {/**.....................logo ends ............................ */}
       {/**.....................middle menu starts ............................ */}
       <div style={{ width: "60%", margin: "auto" }}>
         <Menu mode="horizontal" style={{ borderBottom: "none" }}>
           <Menu.Item key="mail">
-            <span style={{ color: "#45ab67", fontSize: "1.2em" }}>Home</span>
+            <span style={{ color: "#45ab67" }}>Home</span>
           </Menu.Item>
           <Menu.Item key="app">
-            <span style={{ color: "#45ab67", fontSize: "1.2em" }}>Pages</span>
+            <span style={{ color: "#45ab67" }}>Pages</span>
           </Menu.Item>
           <SubMenu
             title="Category"
-            icon={
-              <CaretDownOutlined
-                style={{ color: "#45ab67", fontSize: "1.2em" }}
-              />
-            }
+            icon={<CaretDownOutlined style={{ color: "#45ab67" }} />}
           >
             <Menu.ItemGroup title="Item 1">
               <Menu.Item key="setting:1">Option 1</Menu.Item>
@@ -67,13 +65,11 @@ const NavbarIndex = (props) => {
             </Menu.ItemGroup>
           </SubMenu>
           <Menu.Item key="alipay">
-            <span style={{ color: "#45ab67", fontSize: "1.2em" }}>
-              Daily Deals
-            </span>
+            <span style={{ color: "#45ab67" }}>Daily Deals</span>
           </Menu.Item>
           {userType === "admin" ? (
             <Menu.Item key="admin">
-              <span style={{ color: "#45ab67", fontSize: "1.2em" }}>Admin</span>
+              <span style={{ color: "#45ab67" }}>Admin</span>
             </Menu.Item>
           ) : null}
         </Menu>
