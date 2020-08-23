@@ -8,6 +8,7 @@ import {
   Tooltip,
   Divider,
   Popconfirm,
+  Badge,
 } from "antd";
 import {
   PhoneOutlined,
@@ -27,7 +28,7 @@ const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
   const dispatch = useDispatch();
 
-  //  console.log("props.userAuth", props.user);
+  //console.log("props.userAuth", props.user.userName);
 
   const onLogOutUser = () => {
     const { cookies } = props;
@@ -88,7 +89,8 @@ const MenuIndex = (props) => {
                 placement="bottomCenter"
                 icon={<UserOutlined />}
               >
-                My Account
+                <Badge color="#87d068" />
+                {props.user.userName ? props.user.userName : "My Account"}
               </Dropdown.Button>
             </div>
           </div>
