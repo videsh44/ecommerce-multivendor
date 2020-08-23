@@ -6,6 +6,7 @@ import { adminLogin } from "../src/actions";
 import history from "./history";
 
 import "antd/dist/antd.css";
+import  SignUp from "./SignUp";
 
 const Login = (props) => {
   //const [isLoged, setIsLoged] = useState(false);
@@ -107,23 +108,29 @@ const Login = (props) => {
   };
 
   return (
-    <div>
-      <div className="container" style={{ marginTop: "2%" }}>
+    <div style={{backgroundImage:"url('https://i.pinimg.com/originals/bc/27/60/bc27609dca848b8853968d5cf11e6692.jpg')", 
+    width:'100%',
+    backgroundRepeat: "repeat-x",
+    backgroundSize:"cover",
+    minHeight:'100vh'
+
+  }}>
+      <div className="container" >
         <div
           style={{
-            maxWidth: "420px",
+            maxWidth: "520px",
             margin: "0px auto",
             padding: "30px",
-            borderRadius: "5px",
-            background: "#FAFAFA",
-            boxShadow: "0 8px 6px -6px black",
-            marginTop: "10%",
+            background: "#fff",
+            boxShadow: "-1px 4px 28px 0px rgba(0,0,0,0.75)",
+            marginTop: "15%",
+            color:'#000'
           }}
         >
           {screenType === "login" ? (
             <div>
               <div style={{ textAlign: "center" }}>
-                <img src="https://www.ranoliaventures.com/images/logo.png" />
+                <img src="https://img.icons8.com/carbon-copy/2x/login-rounded-right.png" width="100px"/>
               </div>
               <div style={{ margin: "30px" }}>
                 <label>Username</label>
@@ -151,22 +158,23 @@ const Login = (props) => {
                   onClick={handleLogin}
                   type="primary"
                   className="login-form-button"
-                  style={{ background: "#31b5ab", borderColor: "#31b5ab" }}
+                 
                 >
                   <Icon type="login" />
                   Log in
                 </Button>
               </div>
-              <div style={{ textAlign: "center", marginTop: "10px" }}>
+              <div style={{ textAlign: "center", marginTop: "40px", fontSize:'16px'}}>
+              <span style={{textAlign:'center', marginTop: "40px"}}><h6>OR</h6></span>
                 <Button onClick={() => setScreenType("signup")}>
-                  not a user Signup
+                  No account? Create one here
                 </Button>
               </div>
             </div>
           ) : (
             <div>
-              signup
-              <div style={{ textAlign: "center", marginTop: "10px" }}>
+              <SignUp />
+              <div style={{ textAlign: "center", marginTop: "40px !important" }}>
                 <Button onClick={() => setScreenType("login")}>
                   Already a user Login
                 </Button>

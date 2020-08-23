@@ -54,3 +54,20 @@
 {
   color: #45ab67;
 }
+.ant-input-affix-wrapper .ant-input:not(:first-child) {
+    padding-left: 30px;
+    padding: 7%;
+    font-size: 16px;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+.ant-btn-primary
+{
+    background: rgb(69, 171, 103);
+    border-color: rgb(49, 181, 171);
+    width: 85%;
+    font-size: 110%;
+    height: 53px;
+  font-size: 16px;
+  border-radius: 10px;
+}
