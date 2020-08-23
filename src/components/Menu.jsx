@@ -7,6 +7,8 @@ import {
   message,
   Tooltip,
   Divider,
+  Popconfirm,
+  Badge,
 } from "antd";
 import {
   PhoneOutlined,
@@ -20,12 +22,13 @@ import history from "../history";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { withCookies } from "react-cookie";
+import NavbarIndex from "./navbar/NavbarIndex";
 
 const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
   const dispatch = useDispatch();
 
-  //  console.log("props.userAuth", props.user);
+  //console.log("props.userAuth", props.user.userName);
 
   const onLogOutUser = () => {
     const { cookies } = props;
@@ -47,14 +50,21 @@ const MenuIndex = (props) => {
         <ToolOutlined className="menu-item-icon" /> My Account
       </Menu.Item>
       <Menu.Item key="2">
-        <LogoutOutlined className="menu-item-icon" /> Sign out
+        <Popconfirm
+          title="Are you sure you want log out ?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={onLogOutUser}
+        >
+          <LogoutOutlined className="menu-item-icon" /> Sign out
+        </Popconfirm>
       </Menu.Item>
     </Menu>
   );
 
   return (
     <div>
-      <Layout>
+      <Layout style={{ background: "#fff" }}>
         <Header
           className="header"
           style={{ position: "fixed", zIndex: 12345, width: "100%" }}
@@ -79,10 +89,22 @@ const MenuIndex = (props) => {
                 placement="bottomCenter"
                 icon={<UserOutlined />}
               >
-                My Account
+                <Badge color="#87d068" />
+                {props.user.userName ? props.user.userName : "My Account"}
               </Dropdown.Button>
             </div>
           </div>
+        </Header>
+        <Header
+          style={{
+            //  position: "fixed",
+            //  top: "48px",
+            marginTop: 48,
+            width: "100%",
+            background: "#FFFFFF",
+          }}
+        >
+          <NavbarIndex />
         </Header>
         <Content
           className="site-layout"

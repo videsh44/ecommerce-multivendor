@@ -15,7 +15,7 @@ export default (state = INITIAL_STATE, action) => {
         userId: action.payload.userId,
         Authorization: action.payload.token,
         userName: action.payload.username,
-        userType: action.payload.userType,
+        userType: action.payload.user_type,
       };
     case "SET_USER_AUTH":
       return {
@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
         userId: action.payload.userId,
         Authorization: action.payload.Authorization,
         userName: action.payload.userName,
-        userType: action.payload.userType,
+        userType: action.payload.user_type,
       };
     case "LOGOUT_USER":
       return {
