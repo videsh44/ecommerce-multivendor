@@ -28,7 +28,7 @@ const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
   const dispatch = useDispatch();
 
-  //console.log("props.userAuth", props.user.userName);
+  console.log("props.userAuth", props.user);
 
   const onLogOutUser = () => {
     const { cookies } = props;
@@ -37,6 +37,7 @@ const MenuIndex = (props) => {
     cookies.remove("userId", { path: "/" });
     cookies.remove("userType", { path: "/" });
     cookies.remove("userName", { path: "/" });
+    localStorage.removeItem("user_type");
 
     // dispatch(logoutUser());
     props.logoutUser();

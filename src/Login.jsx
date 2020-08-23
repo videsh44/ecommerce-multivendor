@@ -15,7 +15,7 @@ const Login = (props) => {
 
   const [screenType, setScreenType] = useState("login");
 
-  //  console.log(props.cookies);
+  // console.log(props.cookies);
   //  console.log(props.userAuth.isSignedIn);
 
   const setCookies = () => {
@@ -65,9 +65,10 @@ const Login = (props) => {
 
     try {
       const response = await adminLogin(formValues);
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         props.loginUser(response.data);
+        localStorage.setItem("user_type", response.data.user_type);
         history.push("/home");
       }
     } catch (error) {
