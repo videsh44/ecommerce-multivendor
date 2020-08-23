@@ -42,7 +42,7 @@ const Routing = (props) => {
       <React.Fragment>
         <Switch>
           <PrivateRoute
-            path="/"
+            path="/home"
             exact
             component={Home}
             user={user}
@@ -51,7 +51,7 @@ const Routing = (props) => {
 
           {/*  <Route path="/home" component={Home} /> */}
           {/*  <Route path="/login" component={Login} /> */}
-          {/**   <Route path="/" exact component={Home} user={user} />  */}
+          <Route path="/" exact component={Login} user={user} />
         </Switch>
       </React.Fragment>
       <Route path="/login" render={() => <Login cookies={props.cookies} />} />

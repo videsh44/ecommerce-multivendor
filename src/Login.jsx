@@ -12,6 +12,8 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [screenType, setScreenType] = useState("login");
+
   //  console.log(props.cookies);
   //  console.log(props.userAuth.isSignedIn);
 
@@ -39,7 +41,7 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    history.push("/");
+    // history.push("/");
     setCookies();
   }, [props.userAuth.isSignedIn]);
 
@@ -82,7 +84,7 @@ const Login = (props) => {
       ) {
         props.loginUser(email, password);
         //document.location.assign("/home");
-        history.push("/dashboard");
+        history.push("/home");
         message.success("login sucessfully");
       } else {
         message.warning("please enter valid user");
@@ -118,37 +120,59 @@ const Login = (props) => {
             marginTop: "10%",
           }}
         >
-          <div style={{ textAlign: "center" }}>
-            <img src="https://www.ranoliaventures.com/images/logo.png" />
-          </div>
-          <div style={{ margin: "30px" }}>
-            <label>Username</label>
-            <Input
-              onChange={onUserNameChange}
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="username "
-            />
-          </div>
-          <div style={{ margin: "30px" }}>
-            <label>Password</label>
-            <Input
-              onChange={onPassChange}
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-              type="password"
-              placeholder="Password"
-            />
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <Button
-              onClick={handleLogin}
-              type="primary"
-              className="login-form-button"
-              style={{ background: "#31b5ab", borderColor: "#31b5ab" }}
-            >
-              <Icon type="login" />
-              Log in
-            </Button>
-          </div>
+          {screenType === "login" ? (
+            <div>
+              <div style={{ textAlign: "center" }}>
+                <img src="https://www.ranoliaventures.com/images/logo.png" />
+              </div>
+              <div style={{ margin: "30px" }}>
+                <label>Username</label>
+                <Input
+                  onChange={onUserNameChange}
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="username "
+                />
+              </div>
+              <div style={{ margin: "30px" }}>
+                <label>Password</label>
+                <Input
+                  onChange={onPassChange}
+                  prefix={
+                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  type="password"
+                  placeholder="Password"
+                />
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <Button
+                  onClick={handleLogin}
+                  type="primary"
+                  className="login-form-button"
+                  style={{ background: "#31b5ab", borderColor: "#31b5ab" }}
+                >
+                  <Icon type="login" />
+                  Log in
+                </Button>
+              </div>
+              <div style={{ textAlign: "center", marginTop: "10px" }}>
+                <Button onClick={() => setScreenType("signup")}>
+                  not a user Signup
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              signup
+              <div style={{ textAlign: "center", marginTop: "10px" }}>
+                <Button onClick={() => setScreenType("login")}>
+                  Already a user Login
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
