@@ -7,8 +7,7 @@ import MenuIndex from "./Menu";
 import { loginUser } from "../actions/authActions";
 import history from "../history";
 import { connect } from "react-redux";
-
-import navbar from "./navbar/navbarIndex";
+import Home from "../components/home/Home";
 
 const PrivateRoute = ({ component: Component, user, dispatch, ...rest }) => {
   {
@@ -43,16 +42,16 @@ const Routing = (props) => {
       <React.Fragment>
         <Switch>
           <PrivateRoute
-            path="/"
+            path="/home"
             exact
-            component={navbar}
+            component={Home}
             user={user}
             dispatch={dispatch}
           />
 
           {/*  <Route path="/home" component={Home} /> */}
           {/*  <Route path="/login" component={Login} /> */}
-          {/**   <Route path="/" exact component={Home} user={user} />  */}
+          <Route path="/" exact component={Login} user={user} />
         </Switch>
       </React.Fragment>
       <Route path="/login" render={() => <Login cookies={props.cookies} />} />
