@@ -9,6 +9,7 @@ import {
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { appLogo } from "../../assets/IconAssets";
+import history from "../../history";
 
 const { SubMenu } = Menu;
 
@@ -22,6 +23,10 @@ const NavbarIndex = (props) => {
     localStorage.getItem("user_type") === undefined
       ? ""
       : localStorage.getItem("user_type");
+
+  const onAdminPageClick = () => {
+    history.push("/admin");
+  };
 
   return (
     <div
@@ -68,7 +73,7 @@ const NavbarIndex = (props) => {
             <span style={{ color: "#45ab67" }}>Daily Deals</span>
           </Menu.Item>
           {userType === "admin" ? (
-            <Menu.Item key="admin">
+            <Menu.Item key="admin" onClick={onAdminPageClick}>
               <span style={{ color: "#45ab67" }}>Admin</span>
             </Menu.Item>
           ) : null}

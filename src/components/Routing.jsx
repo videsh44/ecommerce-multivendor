@@ -8,6 +8,7 @@ import { loginUser } from "../actions/authActions";
 import history from "../history";
 import { connect } from "react-redux";
 import Home from "../components/home/Home";
+import AdminIndex from "./admin/AdminIndex";
 
 const PrivateRoute = ({ component: Component, user, dispatch, ...rest }) => {
   {
@@ -49,9 +50,18 @@ const Routing = (props) => {
             dispatch={dispatch}
           />
 
+          <PrivateRoute
+            path="/admin"
+            exact
+            component={AdminIndex}
+            user={user}
+            dispatch={dispatch}
+          />
+
           {/*  <Route path="/home" component={Home} /> */}
           {/*  <Route path="/login" component={Login} /> */}
           <Route path="/" exact component={Login} user={user} />
+          {/** <Route path="/admin" exact component={AdminIndex} />  */}
         </Switch>
       </React.Fragment>
       <Route path="/login" render={() => <Login cookies={props.cookies} />} />

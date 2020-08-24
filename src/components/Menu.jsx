@@ -96,6 +96,7 @@ const MenuIndex = (props) => {
             </div>
           </div>
         </Header>
+
         <Header
           style={{
             //  position: "fixed",
@@ -118,6 +119,7 @@ const MenuIndex = (props) => {
           <div
             style={{
               height: "100vh",
+              overflowY: "auto",
               //  border: "1px solid red"
             }}
           >
