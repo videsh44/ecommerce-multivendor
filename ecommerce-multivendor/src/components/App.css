@@ -1,0 +1,79 @@
+@import "~antd/dist/antd.css";
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 4px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffa500;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ff8c00;
+}
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.header {
+  background: #d8e3e8;
+  height: 46px;
+  line-height: 45px;
+}
+
+.top-menu-items {
+  font-size: 12px;
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+.menu-item-icon {
+  color: #ff7f18;
+}
+
+/**
+.ant-menu-submenu-title
+{
+  font-size: 1.2em;
+}
+.ant-menu-horizontal {
+    line-height: 46px;
+    white-space: nowrap;
+    border: 0;
+    border-bottom: none !important; 
+    -webkit-box-shadow: none;
+        margin-top: 1.2%;
+    box-shadow: none;
+  }
+.menu-item-icon {
+  color: #ff7f18;
+}
+.ant-menu-item,
+.ant-menu-item>a,
+.ant-menu-submenu-title
+{
+  color: #45ab67;
+}
+.ant-input-affix-wrapper .ant-input:not(:first-child) {
+    padding-left: 30px;
+    padding: 7%;
+    font-size: 16px;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+
+*/
+.login-form-btn {
+  background: rgb(69, 171, 103);
+  border-color: rgb(49, 181, 171);
+  width: 85%;
+  font-size: 110%;
+  height: 53px;
+  font-size: 16px;
+  border-radius: 10px;
+}
