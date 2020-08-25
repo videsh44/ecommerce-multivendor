@@ -32,14 +32,13 @@ const Login = (props) => {
           Authorization,
           isSignedIn,
           userId,
-          userType,
-
+          user_type,
           userName,
         } = props.userAuth;
         cookies.set("Authorization", Authorization, { path: "/" });
-        cookies.set("userType", userType, { path: "/" });
         cookies.set("isSignedIn", isSignedIn, { path: "/" });
         cookies.set("userId", userId, { path: "/" });
+        cookies.set("user_type", user_type, { path: "/" });
 
         cookies.set("userName", userName, { path: "/" });
       }
@@ -50,9 +49,9 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    if (localUserType === "admin") {
+    if (props.userAuth.user_type === "admin") {
       history.push("/admin/product");
-    } else if (localUserType === "user") {
+    } else if (props.userAuth.user_type === "user") {
       history.push("/home");
     }
 
@@ -82,7 +81,7 @@ const Login = (props) => {
       if (response.status === 200) {
         props.loginUser(response.data);
         localStorage.setItem("user_type", response.data.user_type);
-        window.location.reload();
+        //  window.location.reload();
         // history.push("/home");
       }
     } catch (error) {
