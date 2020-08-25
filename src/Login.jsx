@@ -15,8 +15,14 @@ const Login = (props) => {
 
   const [screenType, setScreenType] = useState("login");
 
-  // console.log(props.cookies);
-  //  console.log(props.userAuth.isSignedIn);
+  const localUserType =
+    localStorage.getItem("user_type") === null ||
+    localStorage.getItem("user_type") === undefined
+      ? ""
+      : localStorage.getItem("user_type");
+
+  // console.log("props.cookies", props.cookies);
+  // console.log(props.userAuth);
 
   const setCookies = () => {
     if (props.userAuth.isSignedIn) {
@@ -27,12 +33,14 @@ const Login = (props) => {
           isSignedIn,
           userId,
           userType,
+
           userName,
         } = props.userAuth;
         cookies.set("Authorization", Authorization, { path: "/" });
+        cookies.set("userType", userType, { path: "/" });
         cookies.set("isSignedIn", isSignedIn, { path: "/" });
         cookies.set("userId", userId, { path: "/" });
-        cookies.set("userType", userType, { path: "/" });
+
         cookies.set("userName", userName, { path: "/" });
       }
       // console.log("yes");
@@ -42,7 +50,12 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    // history.push("/");
+    if (localUserType === "admin") {
+      history.push("/admin/product");
+    } else if (localUserType === "user") {
+      history.push("/home");
+    }
+
     setCookies();
   }, [props.userAuth.isSignedIn]);
 
@@ -69,7 +82,8 @@ const Login = (props) => {
       if (response.status === 200) {
         props.loginUser(response.data);
         localStorage.setItem("user_type", response.data.user_type);
-        history.push("/home");
+        window.location.reload();
+        // history.push("/home");
       }
     } catch (error) {
       message.warning(error.response.data.error.message);

@@ -25,7 +25,7 @@ const NavbarIndex = (props) => {
       : localStorage.getItem("user_type");
 
   const onAdminPageClick = () => {
-    history.push("/admin");
+    history.push("/admin/product");
   };
 
   return (

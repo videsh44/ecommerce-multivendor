@@ -9,13 +9,11 @@ import history from "../history";
 import { connect } from "react-redux";
 import Home from "../components/home/Home";
 import AdminIndex from "./admin/AdminIndex";
+import ProductIndex from "./admin/products/ProductIndex";
+import { useState } from "react";
 
 const PrivateRoute = ({ component: Component, user, dispatch, ...rest }) => {
-  {
-    /*if (user.isSignedIn === true) {
-    document.location.assign("/home");
-  } */
-  }
+  //  console.log("user", user);
   return (
     <Route
       {...rest}
@@ -32,9 +30,39 @@ const PrivateRoute = ({ component: Component, user, dispatch, ...rest }) => {
   );
 };
 
+const AdminPrivateRoute = ({
+  component: Component,
+  user,
+  userType,
+  dispatch,
+  ...rest
+}) => {
+  //  console.log("userType", userType);
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        userType === "admin" ? (
+          <AdminIndex>
+            <Component {...props} />
+          </AdminIndex>
+        ) : (
+          <Redirect to={{ pathname: "/home" }} />
+        )
+      }
+    />
+  );
+};
+
 const Routing = (props) => {
   const dispatch = useDispatch();
   //const user = useSelector(state => state.userAuth);
+
+  const userType =
+    localStorage.getItem("user_type") === null ||
+    localStorage.getItem("user_type") === undefined
+      ? ""
+      : localStorage.getItem("user_type");
   const user = props.userAuth;
 
   // console.log(props.userAuth.isSignedIn);
@@ -50,12 +78,23 @@ const Routing = (props) => {
             dispatch={dispatch}
           />
 
+          {/**
           <PrivateRoute
             path="/admin"
             exact
             component={AdminIndex}
             user={user}
             dispatch={dispatch}
+          />
+           */}
+
+          <AdminPrivateRoute
+            path="/admin/product"
+            exact
+            component={ProductIndex}
+            user={user}
+            dispatch={dispatch}
+            userType={userType}
           />
 
           {/*  <Route path="/home" component={Home} /> */}

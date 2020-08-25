@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   isSignedIn: false,
+
   userId: null,
   Authorization: "null",
   userName: "",
@@ -15,6 +16,7 @@ export default (state = INITIAL_STATE, action) => {
         userId: action.payload.userId,
         Authorization: action.payload.token,
         userName: action.payload.username,
+
         userType: action.payload.user_type,
       };
     case "SET_USER_AUTH":
@@ -24,6 +26,7 @@ export default (state = INITIAL_STATE, action) => {
         userId: action.payload.userId,
         Authorization: action.payload.Authorization,
         userName: action.payload.userName,
+
         userType: action.payload.user_type,
       };
     case "LOGOUT_USER":
@@ -33,6 +36,7 @@ export default (state = INITIAL_STATE, action) => {
         userId: null,
         Authorization: "",
         userName: "",
+
         userType: "",
       };
     default:

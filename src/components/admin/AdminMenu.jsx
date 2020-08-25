@@ -5,6 +5,7 @@ import {
   ShopOutlined,
   ShoppingOutlined,
 } from "@ant-design/icons";
+import history from "../../history";
 
 const { SubMenu } = Menu;
 
@@ -27,7 +28,7 @@ const AdminMenu = (props) => {
               </span>
             }
           >
-            <Menu.Item onClick={() => props.setScreenType("product")} key="1">
+            <Menu.Item onClick={() => history.push("/admin/product")} key="1">
               All Products
             </Menu.Item>
           </SubMenu>
@@ -41,10 +42,17 @@ const AdminMenu = (props) => {
               </span>
             }
           >
-            <Menu.Item onClick={() => props.setScreenType("order")} key="5">
+            <Menu.Item
+              // onClick={() => props.setScreenType("order")}
+              key="5"
+            >
               All Orders
             </Menu.Item>
           </SubMenu>
+          <Menu.Item onClick={() => history.push("/home")} key="home">
+            <ShoppingOutlined />
+            Shop
+          </Menu.Item>
         </Menu>
       </div>
     </>
