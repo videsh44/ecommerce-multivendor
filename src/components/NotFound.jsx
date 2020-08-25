@@ -4,7 +4,7 @@ import history from "../history";
 
 const NotFound = (props) => {
   const backToHome = () => {
-    history.push("/dashboard");
+    history.push("/home");
   };
 
   return (
