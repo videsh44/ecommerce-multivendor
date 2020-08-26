@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Table, Pagination, Button, Icon, Modal, Card } from "antd";
-import { getProductsData } from "../../../actions";
+import {
+  Table,
+  Pagination,
+  Button,
+  Icon,
+  Modal,
+  Card,
+  Popconfirm,
+  Divider,
+  message,
+} from "antd";
+import { getProductsData, getProductDelete } from "../../../actions";
 import AddNewProduct from "./AddNewProduct";
+import EditProduct from "./EditProduct";
 
 const ProductIndex = () => {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [createNewModalShow, setCreateNewModalShow] = useState(false);
   const [loadAgain, setLoadAgain] = useState(false);
+  const [selectedProductData, setSelectedProductData] = useState([]);
+  const [editModalShow, setEditModalShow] = useState(false);
   // const [offSet, setOffSet] = useState(0);
   // const [count, setCount] = useState(null);
   // const limit = 10;
@@ -96,7 +109,35 @@ const ProductIndex = () => {
       key: "action",
       render: (record) => (
         <span>
-          <span>Actions</span>
+          <span>
+            <Popconfirm
+              title="Are you sure you want to delete ?"
+              okText="Yes"
+              cancelText="No"
+              onConfirm={() => onDelete(record)}
+            >
+              <Button
+                type="link"
+                style={{
+                  color: "red",
+                  padding: 0,
+                  marginRight: "10px",
+                }}
+              >
+                Delete
+              </Button>
+            </Popconfirm>
+            <Divider type="vertical" />
+          </span>
+          <span>
+            <Button
+              type="link"
+              onClick={() => onEdit(record)}
+              style={{ padding: 0, marginRight: "10px" }}
+            >
+              Update
+            </Button>
+          </span>
         </span>
       ),
     },
@@ -104,6 +145,24 @@ const ProductIndex = () => {
 
   const createNew = () => {
     setCreateNewModalShow(true);
+  };
+
+  const onEdit = (data) => {
+    setSelectedProductData(data);
+    setEditModalShow(true);
+  };
+
+  const onDelete = async (item) => {
+    try {
+      let selectedId = item._id;
+      setLoading(true);
+      await getProductDelete(selectedId);
+      message.success("Product Deleted");
+      setLoading(false);
+      setLoadAgain(!loadAgain);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
@@ -152,6 +211,28 @@ const ProductIndex = () => {
         </Modal>
       ) : null}
       {/* create new modal end  */}
+
+      {/*EDIT MODAL STARTS */}
+      {editModalShow === true ? (
+        <Modal
+          style={{ minWidth: "700px" }}
+          title="Edit Product"
+          closable={true}
+          footer={null}
+          onCancel={() => setEditModalShow(false)}
+          visible={editModalShow}
+          destroyOnClose={true}
+        >
+          <EditProduct
+            setEditModalShow={setEditModalShow}
+            selectedProductData={selectedProductData}
+            setLoadAgain={setLoadAgain}
+            loadAgain={loadAgain}
+          />
+        </Modal>
+      ) : null}
+
+      {/*EDIT MODAL ENDS */}
     </div>
   );
 };
