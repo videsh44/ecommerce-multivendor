@@ -42,10 +42,7 @@ const AdminMenu = (props) => {
               </span>
             }
           >
-            <Menu.Item
-              // onClick={() => props.setScreenType("order")}
-              key="5"
-            >
+            <Menu.Item onClick={() => console.log("/order")} key="5">
               All Orders
             </Menu.Item>
           </SubMenu>

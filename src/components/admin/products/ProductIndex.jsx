@@ -179,7 +179,6 @@ const ProductIndex = () => {
           pagination={true}
           columns={columnName}
           rowKey={(row) => row._id}
-          pagination={false}
         />
       </div>
       {/**
