@@ -36,6 +36,11 @@ const Home = () => {
       <Col xs={24} sm={24} md={1} lg={1} xl={1}>
       </Col>
       </Row>
+           {data.map((item, i) => (
+        <div key={i}>
+          <img style={{ width: "50px" }} src={item.productImage} />
+        </div>
+      ))}
     </>
   );
 };
