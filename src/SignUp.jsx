@@ -57,7 +57,6 @@ const SignUp = (props) => {
         props.setScreenType("login");
       }
     } catch (error) {
-      //  console.log("error", error.response.data.error.message);
       message.warning(error.response.data.error.message);
     }
   };

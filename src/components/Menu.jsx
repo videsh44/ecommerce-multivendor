@@ -22,13 +22,13 @@ import history from "../history";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { withCookies } from "react-cookie";
-import NavbarIndex from "./navbar/NavbarIndex";
+import NavbarIndex from "./navbar/navbarIndex";
 
 const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
   const dispatch = useDispatch();
 
-  //console.log("props.userAuth", props.user.userName);
+  // console.log("props.userAuth", props.user);
 
   const onLogOutUser = () => {
     const { cookies } = props;
@@ -37,6 +37,8 @@ const MenuIndex = (props) => {
     cookies.remove("userId", { path: "/" });
     cookies.remove("userType", { path: "/" });
     cookies.remove("userName", { path: "/" });
+
+    localStorage.removeItem("user_type");
 
     // dispatch(logoutUser());
     props.logoutUser();
@@ -95,6 +97,7 @@ const MenuIndex = (props) => {
             </div>
           </div>
         </Header>
+
         <Header
           style={{
             //  position: "fixed",
@@ -117,6 +120,7 @@ const MenuIndex = (props) => {
           <div
             style={{
               height: "100vh",
+              overflowY: "auto",
               //  border: "1px solid red"
             }}
           >
