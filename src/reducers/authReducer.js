@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   userId: null,
   Authorization: "null",
   userName: "",
-  userType: "",
+  user_type: "",
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,7 +17,7 @@ export default (state = INITIAL_STATE, action) => {
         Authorization: action.payload.token,
         userName: action.payload.username,
 
-        userType: action.payload.user_type,
+        user_type: action.payload.user_type,
       };
     case "SET_USER_AUTH":
       return {
@@ -27,7 +27,7 @@ export default (state = INITIAL_STATE, action) => {
         Authorization: action.payload.Authorization,
         userName: action.payload.userName,
 
-        userType: action.payload.user_type,
+        user_type: action.payload.user_type,
       };
     case "LOGOUT_USER":
       return {
@@ -37,7 +37,7 @@ export default (state = INITIAL_STATE, action) => {
         Authorization: "",
         userName: "",
 
-        userType: "",
+        user_type: "",
       };
     default:
       return state;

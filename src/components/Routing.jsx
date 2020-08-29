@@ -42,7 +42,7 @@ const AdminPrivateRoute = ({
     <Route
       {...rest}
       render={(props) =>
-        userType === "admin" ? (
+        user.user_type === "admin" ? (
           <AdminIndex>
             <Component {...props} />
           </AdminIndex>

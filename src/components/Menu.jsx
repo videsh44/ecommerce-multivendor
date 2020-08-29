@@ -28,14 +28,14 @@ const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
   const dispatch = useDispatch();
 
-  // console.log("props.userAuth", props.user);
+  console.log("props.userAuth", props.user);
 
   const onLogOutUser = () => {
     const { cookies } = props;
     cookies.remove("Authorization", { path: "/" });
     cookies.remove("isSignedIn", { path: "/" });
     cookies.remove("userId", { path: "/" });
-    cookies.remove("userType", { path: "/" });
+    cookies.remove("user_type", { path: "/" });
     cookies.remove("userName", { path: "/" });
 
     localStorage.removeItem("user_type");
@@ -121,6 +121,7 @@ const MenuIndex = (props) => {
             style={{
               height: "100vh",
               overflowY: "auto",
+
               //  border: "1px solid red"
             }}
           >

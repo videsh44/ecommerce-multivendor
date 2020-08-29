@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getProductsData } from "../../actions";
-import { Row, Col } from 'antd';
+import { Row, Col } from "antd";
 
-import SideBar  from "./SideBar";
+import SideBar from "./SideBar";
 import Banner from "./Banner";
-import Deal  from "./Deal";
+import Deal from "./Deal";
+import Product from "./Product";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -21,26 +22,33 @@ const Home = () => {
 
   return (
     <>
-      <Row justify="center">
-      <Col xs={24} sm={24} md={1} lg={1} xl={1}>
-      </Col>
-      <Col xs={24} sm={24} md={3} lg={3} xl={3}>
-      <SideBar />
-      </Col>
-      <Col xs={24} sm={24} md={14} lg={14} xl={14}>
-      <Banner />
-      </Col>
-      <Col xs={24} sm={24} md={5} lg={5} xl={5}>
-      <Deal />
-      </Col>
-      <Col xs={24} sm={24} md={1} lg={1} xl={1}>
-      </Col>
+      <Row
+        style={{ margin: 0 }}
+        gutter={24}
+        // justify="center"
+      >
+        <Col xs={24} sm={24} md={1} lg={1} xl={1}></Col>
+        <Col xs={24} sm={24} md={3} lg={3} xl={3}>
+          <SideBar />
+        </Col>
+        <Col xs={24} sm={24} md={13} lg={14} xl={14}>
+          <Banner />
+        </Col>
+        <Col xs={24} sm={24} md={5} lg={5} xl={5}>
+          <Deal />
+        </Col>
+        <Col xs={24} sm={24} md={1} lg={1} xl={1}></Col>
       </Row>
-           {data.map((item, i) => (
-        <div key={i}>
-          <img style={{ width: "50px" }} src={item.productImage} />
-        </div>
-      ))}
+
+        <Row
+        style={{ margin: 0 }}
+        gutter={24}
+      >
+        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+        <Product />
+        </Col>
+      </Row>
+
     </>
   );
 };
