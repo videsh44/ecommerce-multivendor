@@ -55,8 +55,7 @@
 .Electronic h4,
 .Grocery h4,
 .Cloth h4,
-.Gadgets h4
-{
+.Gadgets h4 {
   margin-top: 15%;
 }
 .login-form-btn {
@@ -68,39 +67,34 @@
   font-size: 16px;
   border-radius: 10px;
 }
-.menu
-{
-    font-family: 'Roboto',sans-serif;
-    font-size: 1.1rem;
-    color: #666;
-    font-weight: 400;
-    text-transform: uppercase;
-    display: block;
-    padding: 9px 0;
-    line-height: 22px;
-    position: relative;
+.menu {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 400;
+  text-transform: uppercase;
+  display: block;
+  padding: 9px 0;
+  line-height: 22px;
+  position: relative;
 }
-.deals
-{
+.deals {
   text-align: center;
 }
-.addcart 
-{
+.addcart {
   margin-top: 3%;
   background: #45ab67;
-    color: #fff;
-    text-transform: uppercase;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    background: #222;
-    color: #fff;
-    font-family: 'Oswald',sans-serif;
-    font-size: 1.3rem;
-    padding: 7px 52px;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  background: #222;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.3rem;
 }
-.addcart:hover
-{
+.addcart:hover {
   background: #398e55;
   color: #fff;
 }

@@ -117,14 +117,16 @@ const AddNewProduct = (props) => {
       return;
     }
 
-    if (
-      discount === null ||
-      discount === undefined ||
-      discount === "" ||
-      discount === " "
-    ) {
-      message.warning("Please enter Product discount");
-      return;
+    if (isDiscount === "true") {
+      if (
+        discount === null ||
+        discount === undefined ||
+        discount === "" ||
+        discount === " "
+      ) {
+        message.warning("Please enter Product discount");
+        return;
+      }
     }
 
     if (
@@ -137,6 +139,14 @@ const AddNewProduct = (props) => {
       return;
     }
 
+    let tempDiscount;
+
+    if (isDiscount === "true") {
+      tempDiscount = discount;
+    } else {
+      tempDiscount = 0;
+    }
+
     let formValues = {};
 
     formValues = {
@@ -145,7 +155,7 @@ const AddNewProduct = (props) => {
       category: category,
       is_discount: isDiscount,
       productImage: mediaIconFile,
-      discount: discount,
+      discount: tempDiscount,
     };
 
     //  console.log("formValues", formValues);
@@ -296,40 +306,45 @@ const AddNewProduct = (props) => {
 
       {/* is dicount ends*/}
       {/* discount starts*/}
-      <div style={{ display: "flex", marginBottom: "25px" }}>
-        <div
-          style={{
-            width: "140px",
-            fontWeight: 600,
-          }}
-        >
-          Discount %<span style={{ color: "red", paddingLeft: "4px" }}>*</span>
-        </div>
-        <div style={{ width: "calc(100% - 160px)", marginLeft: "20px" }}>
-          <div>
-            <Input
-              type="number"
-              min={1}
-              max={100}
-              placeholder="Discount %"
-              style={
-                discount === undefined
-                  ? {
-                      width: "100%",
-                      border: "0.5px solid red",
-                    }
-                  : {
-                      width: "100%",
-                    }
-              }
-              onChange={onDiscountChange}
-            />
+
+      {isDiscount === "true" ? (
+        <div style={{ display: "flex", marginBottom: "25px" }}>
+          <div
+            style={{
+              width: "140px",
+              fontWeight: 600,
+            }}
+          >
+            Discount %
+            <span style={{ color: "red", paddingLeft: "4px" }}>*</span>
           </div>
-          {discount === undefined ? (
-            <div style={{ color: "red", marginTop: "5px" }}>* Required</div>
-          ) : null}
+          <div style={{ width: "calc(100% - 160px)", marginLeft: "20px" }}>
+            <div>
+              <Input
+                type="number"
+                min={1}
+                max={100}
+                placeholder="Discount %"
+                style={
+                  discount === undefined
+                    ? {
+                        width: "100%",
+                        border: "0.5px solid red",
+                      }
+                    : {
+                        width: "100%",
+                      }
+                }
+                onChange={onDiscountChange}
+              />
+            </div>
+            {discount === undefined ? (
+              <div style={{ color: "red", marginTop: "5px" }}>* Required</div>
+            ) : null}
+          </div>
         </div>
-      </div>
+      ) : null}
+
       {/* discount ends*/}
       {/* image starts*/}
       <div style={{ display: "flex", marginBottom: "25px" }}>

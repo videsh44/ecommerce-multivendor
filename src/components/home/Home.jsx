@@ -22,6 +22,7 @@ const Home = () => {
 
   return (
     <>
+      {/**
       <Row
         style={{ margin: 0 }}
         gutter={24}
@@ -39,16 +40,11 @@ const Home = () => {
         </Col>
         <Col xs={24} sm={24} md={1} lg={1} xl={1}></Col>
       </Row>
+       */}
 
-        <Row
-        style={{ margin: 0 }}
-        gutter={24}
-      >
-        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+      <div>
         <Product />
-        </Col>
-      </Row>
-
+      </div>
     </>
   );
 };
