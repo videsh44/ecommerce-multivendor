@@ -53,3 +53,8 @@ export const getProductDelete = async (selected_id) => {
   const response = await crmApi().delete(`/products/${selected_id}`);
   return response;
 };
+
+export const getIndividualProductDetail = async (selected_id) => {
+  const response = await crmApi().get(`/products/${selected_id}`);
+  return response;
+};

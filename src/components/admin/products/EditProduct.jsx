@@ -20,8 +20,10 @@ const EditProduct = (props) => {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(null);
-  const [category, setCategory] = useState("");
-  const [isDiscount, setIsDiscount] = useState(false);
+  const [category, setCategory] = useState(selectedProductData.category);
+  const [isDiscount, setIsDiscount] = useState(
+    selectedProductData.is_discount === true ? "true" : "false"
+  );
   const [discount, setDiscount] = useState(null);
   const [isIconFileUplaoded, setIsIconFileUplaoded] = useState(false);
   const [fileIconSrc, setFileIconSrc] = useState("");

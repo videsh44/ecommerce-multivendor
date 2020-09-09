@@ -3,6 +3,7 @@ import { getProductsData } from "../../actions";
 
 import { Card, Col, Row, Button } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import history from "../../history";
 import "./product.css";
 
 const Product = () => {
@@ -11,12 +12,21 @@ const Product = () => {
   useEffect(() => {
     const callApi = async () => {
       const response = await getProductsData();
-      console.log(response.data.products);
+      //  console.log(response.data.products);
       setData(response.data.products);
     };
     callApi();
     return () => {};
   }, []);
+
+  const onAddToCartClick = () => {
+    console.log("ADD TO CART");
+  };
+
+  const onGoToDetailsClick = (data) => {
+    let id = data._id;
+    history.push(`/product/${id}`);
+  };
 
   return (
     <>
@@ -24,8 +34,6 @@ const Product = () => {
         className="site-card-wrapper"
         style={{ textAlign: "center", marginTop: "5%" }}
       >
-        <h1>Our Products</h1>
-
         <Row gutter={[48, 24]} justify="space-around" style={{ margin: 0 }}>
           {data.map((item, i) => (
             <Col
@@ -39,10 +47,11 @@ const Product = () => {
               key={i}
             >
               <Card
-                hoverable
+                // hoverable
                 className="product__card"
                 bordered={false}
                 style={{ marginTop: "20px" }}
+                // onClick={() => console.log("CARD CLICK")}
               >
                 {item.is_discount ? (
                   <div className="product__discount__header">
@@ -83,10 +92,30 @@ const Product = () => {
                     </span>
                   )}
                 </div>
-                <div style={{ marginTop: "3%" }}>
-                  <Button className="addcart">
+                <div
+                  style={{
+                    marginTop: "3%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Button
+                    type="danger"
+                    style={{ marginRight: "10px" }}
+                    onClick={() => onAddToCartClick(item)}
+                    //className="addcart"
+                  >
                     <ShoppingCartOutlined />
                     Add To Cart
+                  </Button>
+
+                  <Button
+                    onClick={() => onGoToDetailsClick(item)}
+                    type="primary"
+                    //  className="addcart"
+                  >
+                    Details
                   </Button>
                 </div>
               </Card>

@@ -28,7 +28,7 @@ const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
   const dispatch = useDispatch();
 
-  console.log("props.userAuth", props.user);
+  // console.log("props.userAuth", props.user);
 
   const onLogOutUser = () => {
     const { cookies } = props;

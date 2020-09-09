@@ -43,7 +43,7 @@ const NavbarIndex = (props) => {
     >
       {/**.....................logo starts ............................ */}
       <div style={{ width: "20%" }}>
-        <img src={appLogo} style={{ height: "44px", width: "100%" }} />
+        <img src={appLogo} style={{ width: "100%", objectFit: "contain" }} />
         {/**  <div className="logo" /> */}
       </div>
       {/**.....................logo ends ............................ */}

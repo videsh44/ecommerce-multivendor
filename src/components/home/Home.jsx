@@ -1,25 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getProductsData } from "../../actions";
-import { Row, Col } from "antd";
 
-import SideBar from "./SideBar";
-import Banner from "./Banner";
-import Deal from "./Deal";
 import Product from "./Product";
 
 const Home = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const callApi = async () => {
-      const response = await getProductsData();
-      console.log(response.data.products);
-      setData(response.data.products);
-    };
-    callApi();
-    return () => {};
-  }, []);
-
   return (
     <>
       {/**
