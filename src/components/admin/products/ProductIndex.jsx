@@ -21,17 +21,18 @@ const ProductIndex = () => {
   const [loadAgain, setLoadAgain] = useState(false);
   const [selectedProductData, setSelectedProductData] = useState([]);
   const [editModalShow, setEditModalShow] = useState(false);
-  // const [offSet, setOffSet] = useState(0);
-  // const [count, setCount] = useState(null);
-  // const limit = 10;
+  const [offSet, setOffSet] = useState(0);
+  const [count, setCount] = useState(null);
+  const limit = 6;
 
   useEffect(() => {
     const callApi = async () => {
       try {
         setLoading(true);
-        const response = await getProductsData();
-        // console.log(response.data.products);
+        const response = await getProductsData(limit, offSet);
+        //console.log(response.data.count);
         setProductList(response.data.products);
+        setCount(response.data.count);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -165,6 +166,21 @@ const ProductIndex = () => {
     }
   };
 
+  const handlePageChange = async (pageNumber) => {
+    const temp_offset = pageNumber * limit - limit;
+    setOffSet(temp_offset);
+    setLoading(true);
+    try {
+      const response = await getProductsData(limit, temp_offset);
+      // console.log(response.data.data);
+      setProductList(response.data.products);
+      setCount(response.data.count);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <div style={{ textAlign: "right", marginBottom: "40px" }}>
@@ -176,20 +192,20 @@ const ProductIndex = () => {
         <Table
           loading={loading}
           dataSource={productList}
-          pagination={true}
           columns={columnName}
+          pagination={false}
           rowKey={(row) => row._id}
         />
       </div>
-      {/**
+
       <div style={{ marginTop: "30px", textAlign: "right" }}>
         <Pagination
           current={(offSet + limit) / limit}
+          pageSize={limit}
+          onChange={handlePageChange}
           total={count}
-          //onChange={handlePageChange}
         />
       </div>
-       */}
 
       {/* create new modal starts */}
       {createNewModalShow === true ? (

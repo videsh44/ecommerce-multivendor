@@ -50,7 +50,7 @@ const NavbarIndex = (props) => {
       {/**.....................middle menu starts ............................ */}
       <div style={{ width: "60%", margin: "auto" }}>
         <Menu mode="horizontal" style={{ borderBottom: "none" }}>
-          <Menu.Item key="mail">
+          <Menu.Item onClick={() => history.push("/home")} key="mail">
             <span style={{ color: "#45ab67" }}>Home</span>
           </Menu.Item>
           <Menu.Item key="app">

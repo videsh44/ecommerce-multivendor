@@ -10,8 +10,13 @@ export const adminSignup = async (formValues) => {
   return response;
 };
 
-export const getProductsData = async () => {
-  const response = await crmApi().get("/products/");
+export const getProductsData = async (limit, offset) => {
+  const response = await crmApi().get("/products/", {
+    params: {
+      limit,
+      offset,
+    },
+  });
   return response;
 };
 
