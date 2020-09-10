@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import Home from "../components/home/Home";
 import AdminIndex from "./admin/AdminIndex";
 import ProductIndex from "./admin/products/ProductIndex";
+import ProductIndividualDetail from "./productDetail/ProductIndividualDetail";
 import { useState } from "react";
 
 const PrivateRoute = ({ component: Component, user, dispatch, ...rest }) => {
@@ -87,7 +88,14 @@ const Routing = (props) => {
             dispatch={dispatch}
           />
            */}
-
+           <PrivateRoute
+              path="/product/:id"
+              exact
+            component={ProductIndividualDetail}
+            user={user}
+            dispatch={dispatch}
+            />
+            
           <AdminPrivateRoute
             path="/admin/product"
             exact

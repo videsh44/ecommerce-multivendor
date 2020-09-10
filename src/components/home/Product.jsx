@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getProductsData } from "../../actions";
+import history from "../../history";
 
 import { Card, Col, Row, Button } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
@@ -7,16 +8,25 @@ import "./product.css";
 
 const Product = () => {
   const [data, setData] = useState([]);
+  const [productId, setProductId] = useState(null);
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const callApi = async () => {
       const response = await getProductsData();
-      console.log(response.data.products);
       setData(response.data.products);
+      /*setProductId(selectedProductData._id);*/
     };
     callApi();
     return () => {};
   }, []);
+
+  const onProductDetailClick = (data) => {
+    let id = data._id;
+     console.log(data);/**/
+      history.push(`/product/${id}`)
+  }
 
   return (
     <>
@@ -43,6 +53,8 @@ const Product = () => {
                 className="product__card"
                 bordered={false}
                 style={{ marginTop: "20px" }}
+                
+                loading={loading}
               >
                 {item.is_discount ? (
                   <div className="product__discount__header">
@@ -56,7 +68,7 @@ const Product = () => {
                   }}
                   src={item.productImage}
                 />
-                <div className="product__name">{item.name}</div>
+                <div className="product__name" onClick = { () => onProductDetailClick(item)}>{item.name}</div>
 
                 <div
                   className="product__price__container"

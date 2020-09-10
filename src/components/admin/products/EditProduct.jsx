@@ -238,8 +238,6 @@ const EditProduct = (props) => {
       };
     }
 
-    //  console.log("formValues", formValues);
-
     try {
       setLoading(true);
       await getUpdateProduct(formValues, productId);

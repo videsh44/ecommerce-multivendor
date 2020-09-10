@@ -22,7 +22,8 @@ import history from "../history";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { withCookies } from "react-cookie";
-import NavbarIndex from "./navbar/NavbarIndex";
+import NavbarIndex from "./navbar/navbarIndex";
+
 
 const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
