@@ -66,3 +66,17 @@
   background: #fff !important;
   border-right: 0px solid #fff !important;
 }
+
+@media screen and (max-width: 1200px) {
+  .productContainer {
+    flex-flow: column;
+  }
+
+  .productContainer__images {
+    width: 100%;
+  }
+
+  .productContainer__discription {
+    width: 100%;
+  }
+}

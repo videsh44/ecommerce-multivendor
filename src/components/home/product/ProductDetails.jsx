@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getIndividualProductDetail } from "../../../actions";
 import "./productDetail.css";
 import { backGroundLogo } from "../../../assets/IconAssets";
-import { Descriptions, Button, Rate } from "antd";
+import { Descriptions, Button, Rate, Modal } from "antd";
 import {
   EditOutlined,
   ShareAltOutlined,
@@ -12,6 +12,8 @@ import {
   MinusSquareOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
+import PrintComponent from "./PrintComponent";
+import Share from "./Share";
 
 const ProductDetails = (props) => {
   //console.log(props.match.params.id);
@@ -19,6 +21,7 @@ const ProductDetails = (props) => {
 
   const [data, setData] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [shareModalShow, setShareModalShow] = useState(false);
 
   useEffect(() => {
     const callDataApi = async () => {
@@ -44,7 +47,12 @@ const ProductDetails = (props) => {
   };
 
   return (
-    <div style={{ background: "#fff", height: "100vh" }}>
+    <div
+      style={{
+        background: "#fff",
+        //  height: "100vh"
+      }}
+    >
       <div
         style={{
           backgroundImage: `url(${backGroundLogo})`,
@@ -94,6 +102,23 @@ const ProductDetails = (props) => {
                 </span>
               ) : (
                 <span className="product__price__fixed">Rs {data.price}</span>
+              )}
+            </Descriptions.Item>
+            <Descriptions.Item label="Total Price" span={3}>
+              {data.is_discount ? (
+                <span>
+                  <span className="product__price__fixed">
+                    Rs{" "}
+                    {Math.round(
+                      (data.price - (data.price * data.discount) / 100) *
+                        quantity
+                    )}
+                  </span>
+                </span>
+              ) : (
+                <span className="product__price__fixed">
+                  Rs {Math.round(data.price * quantity)}
+                </span>
               )}
             </Descriptions.Item>
             <Descriptions.Item
@@ -156,28 +181,54 @@ const ProductDetails = (props) => {
               </span>
             </Descriptions.Item>
             <Descriptions.Item className="description__withoutLabel" span={3}>
-              <span style={{ cursor: "pointer" }}>
-                <ShareAltOutlined
-                  style={{ color: "#FF8D37", fontSize: "17px" }}
-                />
-                <span style={{ marginLeft: "5px", fontWeight: 700 }}>
-                  {" "}
-                  Share
-                </span>
-              </span>
-              <span style={{ marginLeft: "20px", cursor: "pointer" }}>
-                <PrinterOutlined
-                  style={{ color: "#FF8D37", fontSize: "17px" }}
-                />
-                <span style={{ marginLeft: "5px", fontWeight: 700 }}>
-                  {" "}
-                  Print
-                </span>
-              </span>
+              <div style={{ display: "flex" }}>
+                <div
+                  onClick={() => setShareModalShow(true)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <ShareAltOutlined
+                    style={{ color: "#FF8D37", fontSize: "17px" }}
+                  />
+                  <span style={{ marginLeft: "5px", fontWeight: 700 }}>
+                    {" "}
+                    Share
+                  </span>
+                </div>
+                <div>
+                  <PrintComponent
+                    trigerItem={
+                      <span style={{ marginLeft: "20px", cursor: "pointer" }}>
+                        <PrinterOutlined
+                          style={{ color: "#FF8D37", fontSize: "17px" }}
+                        />
+                        <span style={{ marginLeft: "5px", fontWeight: 700 }}>
+                          Print
+                        </span>
+                      </span>
+                    }
+                  />
+                </div>
+              </div>
             </Descriptions.Item>
           </Descriptions>
         </div>
       </div>
+
+      {/* SHARE modal starts */}
+      {shareModalShow === true ? (
+        <Modal
+          style={{ minWidth: "600px" }}
+          // title="Share"
+          closable={false}
+          footer={null}
+          onCancel={() => setShareModalShow(false)}
+          visible={shareModalShow}
+          destroyOnClose={true}
+        >
+          <Share />
+        </Modal>
+      ) : null}
+      {/* SHARE modal end  */}
     </div>
   );
 };
