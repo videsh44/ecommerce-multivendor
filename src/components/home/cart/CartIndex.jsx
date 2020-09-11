@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getCartData } from "../../../actions";
 
-import { backGroundLogo } from "../../../assets/IconAssets";
-import { Descriptions, Button, Rate, Modal, List, Avatar } from "antd";
+import { Descriptions, Button, Rate, Modal, List, Avatar, Divider } from "antd";
 import {
   EditOutlined,
   ShareAltOutlined,
@@ -15,6 +14,13 @@ import {
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import "./cart.css";
+import BackgroundBanner from "../../elements/BackgroundBanner";
+import CartServicesBox from "../../elements/CartServicesBox";
+import {
+  reassuranceThreeLogo,
+  reassuranceTwoLogo,
+  truckLogo,
+} from "../../../assets/IconAssets";
 
 const CartIndex = () => {
   const user = useSelector((state) => state.userAuth);
@@ -44,20 +50,7 @@ const CartIndex = () => {
       }}
     >
       {/**TOP BACKGROUND IMAGE STARTS */}
-      <div
-        style={{
-          backgroundImage: `url(${backGroundLogo})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "100%",
-          height: "200px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div className="banner__name">CART</div>
-      </div>
+      <BackgroundBanner title="cart" />
 
       {/**TOP BACKGROUND IMAGE ENDS */}
 
@@ -88,16 +81,8 @@ const CartIndex = () => {
                       {item.product.name}
                     </div>
                   }
-                />
-                <div style={{ display: "flex" }}>
-                  <div
-                    style={{
-                      marginRight: "80px",
-                      fontSize: "18px",
-                      fontWeight: 800,
-                    }}
-                  >
-                    {item.product.is_discount ? (
+                  description={
+                    item.product.is_discount ? (
                       <span>
                         Rs{" "}
                         {item.product.price -
@@ -105,10 +90,49 @@ const CartIndex = () => {
                       </span>
                     ) : (
                       <span>Rs {item.product.price}</span>
+                    )
+                  }
+                />
+
+                <div style={{ display: "flex" }}>
+                  {/**TOTAL PRICE STARTS */}
+                  <div
+                    style={{
+                      marginRight: "80px",
+                      fontSize: "18px",
+                      color: "#C64E4E",
+                      fontWeight: 800,
+                    }}
+                  >
+                    {item.product.is_discount ? (
+                      <span>
+                        Rs{" "}
+                        {(item.product.price -
+                          (item.product.price * item.product.discount) / 100) *
+                          item.quantity}
+                      </span>
+                    ) : (
+                      <span>Rs {item.product.price * item.quantity}</span>
                     )}
+                  </div>
+                  {/**TOTAL PRICE ENDS */}
+
+                  <div
+                    style={{
+                      marginRight: "30px",
+                      fontSize: "18px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    {item.quantity}
                   </div>
 
                   <div>
+                    <Button disabled type="primary" shape="round">
+                      <ShoppingCartOutlined />
+                      Place Order
+                    </Button>
+                    {/** 
                     <div style={{ display: "flex" }}>
                       <div>
                         <MinusSquareOutlined
@@ -130,7 +154,7 @@ const CartIndex = () => {
                         {quantity}
                       </div>
 
-                      {/**  <div style={{ display: "flex", flexFlow: "column" }}>  */}
+                      
                       <div>
                         <PlusSquareOutlined
                           //  onClick={onIncreaseQuantityClick}
@@ -138,13 +162,15 @@ const CartIndex = () => {
                         />
                       </div>
 
-                      {/** </div> */}
+                      
                     </div>
+                  */}
                   </div>
                 </div>
               </List.Item>
             )}
           />
+          <Divider dashed />
         </div>
 
         {/** RIGHT SIDE TOTAL/PLACE ORDER SECTION STARTS */}
@@ -172,6 +198,20 @@ const CartIndex = () => {
                 Place Order
               </Button>
             </div>
+          </div>
+          <div style={{ marginTop: "30px" }}>
+            <CartServicesBox
+              logo={truckLogo}
+              text="Delivery policy - Edit with Customer reassurance module"
+            />
+            <CartServicesBox
+              logo={reassuranceTwoLogo}
+              text="Security Policy - Edit with Customer reassurance module"
+            />
+            <CartServicesBox
+              logo={reassuranceThreeLogo}
+              text="Return Policy - Edit with Customer reassurance module"
+            />
           </div>
         </div>
 

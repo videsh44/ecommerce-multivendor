@@ -14,6 +14,7 @@ import {
 } from "@ant-design/icons";
 import PrintComponent from "./PrintComponent";
 import Share from "./Share";
+import BackgroundBanner from "../../elements/BackgroundBanner";
 
 const ProductDetails = (props) => {
   //console.log(props.match.params.id);
@@ -53,20 +54,11 @@ const ProductDetails = (props) => {
         //  height: "100vh"
       }}
     >
-      <div
-        style={{
-          backgroundImage: `url(${backGroundLogo})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "100%",
-          height: "200px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div className="banner__name">{data.name}</div>
-      </div>
+      {/**TOP BACKGROUND IMAGE STARTS */}
+      <BackgroundBanner title={data.name} />
+
+      {/**TOP BACKGROUND IMAGE ENDS */}
+
       <div className="ProductTitle">{data.name}</div>
       <div className="productContainer">
         <div className="productContainer__images">
