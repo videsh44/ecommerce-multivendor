@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getIndividualProductDetail } from "../../../actions";
+import { getIndividualProductDetail, getAddToCart } from "../../../actions";
 import "./productDetail.css";
-import { backGroundLogo } from "../../../assets/IconAssets";
-import { Descriptions, Button, Rate, Modal } from "antd";
+
+import { Descriptions, Button, Rate, Modal, notification } from "antd";
 import {
   EditOutlined,
   ShareAltOutlined,
@@ -15,10 +15,14 @@ import {
 import PrintComponent from "./PrintComponent";
 import Share from "./Share";
 import BackgroundBanner from "../../elements/BackgroundBanner";
+import { useSelector } from "react-redux";
 
 const ProductDetails = (props) => {
   //console.log(props.match.params.id);
   const productId = props.match.params.id;
+  const user = useSelector((state) => state.userAuth);
+
+  const userId = user.userId;
 
   const [data, setData] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -45,6 +49,32 @@ const ProductDetails = (props) => {
       return;
     }
     setQuantity(quantity - 1);
+  };
+
+  const onAddToCartClick = async (data) => {
+    // console.log("data", data);
+    let selectedProductName = data.name;
+    let product_id = data._id;
+
+    let values = {
+      productId: product_id,
+      userId: userId,
+      quantity: quantity,
+    };
+    try {
+      const response = await getAddToCart(values);
+      openNotification(selectedProductName);
+      // message.success("added to cart");
+    } catch (error) {}
+  };
+
+  const openNotification = (selectedProductName) => {
+    notification.info({
+      message: `Added to Cart `,
+      description: `Name :${selectedProductName}, Quantity: ${quantity}`,
+      placement: "topRight",
+      top: 150,
+    });
   };
 
   return (
@@ -154,7 +184,11 @@ const ProductDetails = (props) => {
                   </div>
                 </div>
                 <div style={{ margin: "auto 20px auto 0px" }}>
-                  <Button style={{ marginLeft: "20px" }} type="danger">
+                  <Button
+                    onClick={() => onAddToCartClick(data)}
+                    style={{ marginLeft: "20px" }}
+                    type="danger"
+                  >
                     <ShoppingCartOutlined /> Add to Cart
                   </Button>
                 </div>

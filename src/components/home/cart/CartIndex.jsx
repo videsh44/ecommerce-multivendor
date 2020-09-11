@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getCartData } from "../../../actions";
+import { getCartData, getCartDelete } from "../../../actions";
 
-import { Descriptions, Button, Rate, Modal, List, Avatar, Divider } from "antd";
-import {
-  EditOutlined,
-  ShareAltOutlined,
-  PrinterOutlined,
-  PlusOutlined,
-  PlusSquareOutlined,
-  MinusSquareOutlined,
-  ShoppingCartOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { Button, List, Divider, Popconfirm, message, notification } from "antd";
+import { ShoppingCartOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import "./cart.css";
 import BackgroundBanner from "../../elements/BackgroundBanner";
@@ -27,7 +18,8 @@ const CartIndex = () => {
   const userId = user.userId;
 
   const [data, setData] = useState([]);
-  const [quantity, setQuantity] = useState(1);
+  const [loadAgain, setLoadAgain] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const callDataApi = async () => {
@@ -40,7 +32,29 @@ const CartIndex = () => {
     callDataApi();
 
     return () => {};
-  }, []);
+  }, [loadAgain]);
+
+  const onDelete = async (item) => {
+    try {
+      let selectedId = item._id;
+      setLoading(true);
+      await getCartDelete(selectedId);
+      openNotification();
+      setLoading(false);
+      setLoadAgain(!loadAgain);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  const openNotification = (selectedProductName) => {
+    notification.success({
+      message: `Product Deleted from Cart `,
+
+      placement: "topRight",
+      top: 150,
+    });
+  };
 
   return (
     <div
@@ -58,11 +72,21 @@ const CartIndex = () => {
         <div className="cart__left">
           <List
             itemLayout="horizontal"
+            loading={loading}
             dataSource={data}
             renderItem={(item) => (
               <List.Item
                 actions={[
-                  <DeleteOutlined style={{ fontSize: "25px", color: "red" }} />,
+                  <Popconfirm
+                    title="Are you sure you want to delete ?"
+                    okText="Yes"
+                    cancelText="No"
+                    onConfirm={() => onDelete(item)}
+                  >
+                    <DeleteOutlined
+                      style={{ fontSize: "25px", color: "red" }}
+                    />
+                  </Popconfirm>,
                 ]}
               >
                 <List.Item.Meta

@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { getProductsByCategoryData } from "../../../actions";
+import { getProductsByCategoryData, getAddToCart } from "../../../actions";
 
-import { Card, Col, Row, Button, Pagination, Spin, Empty } from "antd";
+import {
+  Card,
+  Col,
+  Row,
+  Button,
+  Pagination,
+  Spin,
+  Empty,
+  notification,
+} from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import history from "../../../history";
 import "./category.css";
+import { useSelector } from "react-redux";
 
 const CategoryIndex = (props) => {
   const category = props.match.params.category;
+
+  const user = useSelector((state) => state.userAuth);
+
+  const userId = user.userId;
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -36,10 +50,6 @@ const CategoryIndex = (props) => {
     return () => {};
   }, [category]);
 
-  const onAddToCartClick = () => {
-    console.log("ADD TO CART");
-  };
-
   const onGoToDetailsClick = (data) => {
     let id = data._id;
     history.push(`/product/${id}`);
@@ -62,6 +72,33 @@ const CategoryIndex = (props) => {
     } catch (error) {
       setLoading(false);
     }
+  };
+
+  const onAddToCartClick = async (data) => {
+    // console.log("data", data);
+    let selectedProductName = data.name;
+    let product_id = data._id;
+    let temp_quantity = 1;
+
+    let values = {
+      productId: product_id,
+      userId: userId,
+      quantity: temp_quantity,
+    };
+    try {
+      const response = await getAddToCart(values);
+      openNotification(selectedProductName);
+      // message.success("added to cart");
+    } catch (error) {}
+  };
+
+  const openNotification = (selectedProductName) => {
+    notification.info({
+      message: `Added to Cart `,
+      description: `${selectedProductName}`,
+      placement: "topRight",
+      top: 150,
+    });
   };
 
   return (

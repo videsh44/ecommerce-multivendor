@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { getProductsData } from "../../actions";
+import { getProductsData, getAddToCart } from "../../actions";
 
-import { Card, Col, Row, Button, Pagination, Spin, Empty } from "antd";
+import {
+  Card,
+  Col,
+  Row,
+  Button,
+  Pagination,
+  Spin,
+  Empty,
+  message,
+  notification,
+} from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import history from "../../history";
 import "./product.css";
+import { useSelector } from "react-redux";
 
 const Product = () => {
+  const user = useSelector((state) => state.userAuth);
+
+  const userId = user.userId;
+
   const [loading, setLoading] = useState(false);
+  // const [selectedProductName, setSelectedProductName] = useState("");
   const [data, setData] = useState([]);
   const [offSet, setOffSet] = useState(0);
   const [count, setCount] = useState(null);
@@ -18,7 +34,7 @@ const Product = () => {
       try {
         setLoading(true);
         const response = await getProductsData(limit, offSet);
-        //  console.log(response.data.products);
+        //console.log(userId);
         setData(response.data.products);
         setCount(response.data.count);
         setLoading(false);
@@ -30,8 +46,22 @@ const Product = () => {
     return () => {};
   }, []);
 
-  const onAddToCartClick = () => {
-    console.log("ADD TO CART");
+  const onAddToCartClick = async (data) => {
+    // console.log("data", data);
+    let selectedProductName = data.name;
+    let product_id = data._id;
+    let temp_quantity = 1;
+
+    let values = {
+      productId: product_id,
+      userId: userId,
+      quantity: temp_quantity,
+    };
+    try {
+      const response = await getAddToCart(values);
+      openNotification(selectedProductName);
+      // message.success("added to cart");
+    } catch (error) {}
   };
 
   const onGoToDetailsClick = (data) => {
@@ -52,6 +82,15 @@ const Product = () => {
     } catch (error) {
       setLoading(false);
     }
+  };
+
+  const openNotification = (selectedProductName) => {
+    notification.info({
+      message: `Added to Cart `,
+      description: `${selectedProductName}`,
+      placement: "topRight",
+      top: 150,
+    });
   };
 
   return (

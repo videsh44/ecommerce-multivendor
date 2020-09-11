@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, Badge } from "antd";
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-  ShoppingCartOutlined,
-  CaretDownOutlined,
-} from "@ant-design/icons";
+
+import { ShoppingCartOutlined, CaretDownOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { appLogo } from "../../assets/IconAssets";
 import history from "../../history";
@@ -23,10 +18,6 @@ const NavbarIndex = (props) => {
     localStorage.getItem("user_type") === undefined
       ? ""
       : localStorage.getItem("user_type");
-
-  const onAdminPageClick = () => {
-    history.push("/admin/product");
-  };
 
   const categoryOptions = [
     {
@@ -46,6 +37,10 @@ const NavbarIndex = (props) => {
   const onCategoryClick = (cat) => {
     let category = cat;
     history.push(`/product/category/${category}`);
+  };
+
+  const onAdminPageClick = () => {
+    history.push("/admin/product");
   };
 
   return (
@@ -107,7 +102,7 @@ const NavbarIndex = (props) => {
 
       {/**.....................CART menu starts ............................ */}
       <div onClick={() => history.push("/cart")} style={{ width: "20%" }}>
-        <Badge count={5}>
+        <Badge dot>
           <ShoppingCartOutlined
             style={{
               fontSize: "40px",

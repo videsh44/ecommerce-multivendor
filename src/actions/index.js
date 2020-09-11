@@ -78,3 +78,13 @@ export const getCartData = async (id) => {
   const response = await crmApi().get(`/cart/user/${id}`);
   return response;
 };
+
+export const getAddToCart = async (formValues) => {
+  const response = await crmApi().post("/cart/create", formValues);
+  return response;
+};
+
+export const getCartDelete = async (selected_id) => {
+  const response = await crmApi().delete(`/cart/${selected_id}`);
+  return response;
+};
