@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { message, Icon, Input, Button } from "antd";
+import { message, Input, Button } from "antd";
 import { connect } from "react-redux";
 import { loginUser, logoutUser } from "../src/actions/authActions";
 import { adminLogin } from "../src/actions";
@@ -7,6 +7,7 @@ import history from "./history";
 
 import "antd/dist/antd.css";
 import SignUp from "./SignUp";
+import { UserOutlined, LoginOutlined, LockOutlined } from "@ant-design/icons";
 
 const Login = (props) => {
   //const [isLoged, setIsLoged] = useState(false);
@@ -134,9 +135,7 @@ const Login = (props) => {
                 <label>Username</label>
                 <Input
                   onChange={onUserNameChange}
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
+                  prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                   placeholder="username "
                 />
               </div>
@@ -144,9 +143,7 @@ const Login = (props) => {
                 <label>Password</label>
                 <Input
                   onChange={onPassChange}
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
+                  prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                   type="password"
                   placeholder="Password"
                 />
@@ -157,7 +154,7 @@ const Login = (props) => {
                   type="primary"
                   className="login-form-btn"
                 >
-                  <Icon type="login" />
+                  <LoginOutlined />
                   Log in
                 </Button>
               </div>

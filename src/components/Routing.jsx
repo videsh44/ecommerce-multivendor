@@ -12,6 +12,8 @@ import AdminIndex from "./admin/AdminIndex";
 import ProductIndex from "./admin/products/ProductIndex";
 import { useState } from "react";
 import ProductDetails from "./home/product/ProductDetails";
+import CategoryIndex from "./home/category/CategoryIndex";
+import CartIndex from "./home/cart/CartIndex";
 
 const PrivateRoute = ({ component: Component, user, dispatch, ...rest }) => {
   //  console.log("user", user);
@@ -83,6 +85,22 @@ const Routing = (props) => {
             path="/product/:id"
             exact
             component={ProductDetails}
+            user={user}
+            dispatch={dispatch}
+          />
+
+          <PrivateRoute
+            path="/product/category/:category"
+            exact
+            component={CategoryIndex}
+            user={user}
+            dispatch={dispatch}
+          />
+
+          <PrivateRoute
+            path="/cart"
+            exact
+            component={CartIndex}
             user={user}
             dispatch={dispatch}
           />

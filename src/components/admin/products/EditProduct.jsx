@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  Select,
-  Input,
-  Icon,
-  Button,
-  message,
-  Row,
-  Col,
-  Modal,
-} from "antd";
+import { Card, Select, Input, Button, message, Row, Col, Modal } from "antd";
 import { getUpdateProduct } from "../../../actions";
+import { UploadOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -469,7 +460,7 @@ const EditProduct = (props) => {
                       lineHeight: "1.499",
                     }}
                   >
-                    <Icon type="upload" style={{ paddingRight: "5px" }} />
+                    <UploadOutlined style={{ paddingRight: "5px" }} />
                     Upload
                   </span>
                 </label>
@@ -496,7 +487,7 @@ const EditProduct = (props) => {
                         lineHeight: "1.499",
                       }}
                     >
-                      <Icon type="upload" style={{ paddingRight: "5px" }} />
+                      <UploadOutlined style={{ paddingRight: "5px" }} />
                       Upload
                     </span>
                   </label>

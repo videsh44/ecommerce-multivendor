@@ -1,16 +1,7 @@
 import React, { useState } from "react";
-import {
-  Card,
-  Select,
-  Input,
-  Icon,
-  Button,
-  message,
-  Row,
-  Col,
-  Modal,
-} from "antd";
+import { Card, Select, Input, Button, message, Row, Col, Modal } from "antd";
 import { getCreateNewProduct } from "../../../actions";
+import { UploadOutlined } from "@ant-design/icons";
 
 const AddNewProduct = (props) => {
   const [loading, setLoading] = useState(false);
@@ -386,7 +377,7 @@ const AddNewProduct = (props) => {
                     lineHeight: "1.499",
                   }}
                 >
-                  <Icon type="upload" style={{ paddingRight: "5px" }} />
+                  <UploadOutlined style={{ paddingRight: "5px" }} />
                   Upload
                 </span>
               </label>

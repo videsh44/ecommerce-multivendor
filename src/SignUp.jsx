@@ -4,6 +4,7 @@ import { adminSignup } from "../src/actions";
 import history from "./history";
 
 import "antd/dist/antd.css";
+import { UserOutlined, LockOutlined, LoginOutlined } from "@ant-design/icons";
 
 const SignUp = (props) => {
   const [userName, setUserName] = useState("");
@@ -73,7 +74,7 @@ const SignUp = (props) => {
         <label>Username</label>
         <Input
           onChange={onUserNameChange}
-          prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
           placeholder="username "
         />
       </div>
@@ -81,7 +82,7 @@ const SignUp = (props) => {
         <label>Email Address</label>
         <Input
           onChange={onEmailChange}
-          prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
           placeholder="Email Address "
         />
       </div>
@@ -89,7 +90,7 @@ const SignUp = (props) => {
         <label>Password</label>
         <Input
           onChange={onPassChange}
-          prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
           type="password"
           placeholder="Password"
         />
@@ -100,7 +101,7 @@ const SignUp = (props) => {
           type="primary"
           className="login-form-btn"
         >
-          <Icon type="login" />
+          <LoginOutlined />
           Sign up
         </Button>
       </div>

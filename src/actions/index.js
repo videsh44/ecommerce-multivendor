@@ -63,3 +63,18 @@ export const getIndividualProductDetail = async (selected_id) => {
   const response = await crmApi().get(`/products/${selected_id}`);
   return response;
 };
+
+export const getProductsByCategoryData = async (limit, offset, category) => {
+  const response = await crmApi().get(`/products/category/${category}`, {
+    params: {
+      limit,
+      offset,
+    },
+  });
+  return response;
+};
+
+export const getCartData = async (id) => {
+  const response = await crmApi().get(`/cart/user/${id}`);
+  return response;
+};

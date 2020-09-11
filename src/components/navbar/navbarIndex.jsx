@@ -28,6 +28,26 @@ const NavbarIndex = (props) => {
     history.push("/admin/product");
   };
 
+  const categoryOptions = [
+    {
+      category: "Phone",
+      key: "phone",
+    },
+    {
+      category: "Vegetable",
+      key: "vegetable",
+    },
+    {
+      category: "Electronics",
+      key: "electronics",
+    },
+  ];
+
+  const onCategoryClick = (cat) => {
+    let category = cat;
+    history.push(`/product/category/${category}`);
+  };
+
   return (
     <div
       className="menuBar"
@@ -60,13 +80,17 @@ const NavbarIndex = (props) => {
             title="Category"
             icon={<CaretDownOutlined style={{ color: "#45ab67" }} />}
           >
-            <Menu.ItemGroup title="Item 1">
-              <Menu.Item key="setting:1">Option 1</Menu.Item>
-              <Menu.Item key="setting:2">Option 2</Menu.Item>
-            </Menu.ItemGroup>
-            <Menu.ItemGroup title="Item 2">
-              <Menu.Item key="setting:3">Option 3</Menu.Item>
-              <Menu.Item key="setting:4">Option 4</Menu.Item>
+            <Menu.ItemGroup
+            //title="Item 1"
+            >
+              {categoryOptions.map((cat, i) => (
+                <Menu.Item
+                  onClick={() => onCategoryClick(cat.key)}
+                  key={cat.key}
+                >
+                  {cat.category}
+                </Menu.Item>
+              ))}
             </Menu.ItemGroup>
           </SubMenu>
           <Menu.Item key="alipay">
@@ -82,7 +106,7 @@ const NavbarIndex = (props) => {
       {/**.....................middle menu ends ............................ */}
 
       {/**.....................CART menu starts ............................ */}
-      <div style={{ width: "20%" }}>
+      <div onClick={() => history.push("/cart")} style={{ width: "20%" }}>
         <Badge count={5}>
           <ShoppingCartOutlined
             style={{

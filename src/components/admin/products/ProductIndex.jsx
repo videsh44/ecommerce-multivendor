@@ -3,7 +3,6 @@ import {
   Table,
   Pagination,
   Button,
-  Icon,
   Modal,
   Card,
   Popconfirm,
@@ -13,6 +12,7 @@ import {
 import { getProductsData, getProductDelete } from "../../../actions";
 import AddNewProduct from "./AddNewProduct";
 import EditProduct from "./EditProduct";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
 const ProductIndex = () => {
   const [productList, setProductList] = useState([]);
@@ -185,7 +185,7 @@ const ProductIndex = () => {
     <div>
       <div style={{ textAlign: "right", marginBottom: "40px" }}>
         <Button type="primary" onClick={() => createNew()}>
-          <Icon type="plus-circle" /> Add New Product
+          <PlusCircleOutlined /> Add New Product
         </Button>
       </div>
       <div>

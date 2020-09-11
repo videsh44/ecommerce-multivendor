@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { getProductsData } from "../../actions";
+import { getProductsByCategoryData } from "../../../actions";
 
 import { Card, Col, Row, Button, Pagination, Spin, Empty } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import history from "../../history";
-import "./product.css";
+import history from "../../../history";
+import "./category.css";
 
-const Product = () => {
+const CategoryIndex = (props) => {
+  const category = props.match.params.category;
+
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [offSet, setOffSet] = useState(0);
@@ -17,7 +19,11 @@ const Product = () => {
     const callApi = async () => {
       try {
         setLoading(true);
-        const response = await getProductsData(limit, offSet);
+        const response = await getProductsByCategoryData(
+          limit,
+          offSet,
+          category
+        );
         //  console.log(response.data.products);
         setData(response.data.products);
         setCount(response.data.count);
@@ -28,7 +34,7 @@ const Product = () => {
     };
     callApi();
     return () => {};
-  }, []);
+  }, [category]);
 
   const onAddToCartClick = () => {
     console.log("ADD TO CART");
@@ -44,7 +50,11 @@ const Product = () => {
     setOffSet(temp_offset);
     setLoading(true);
     try {
-      const response = await getProductsData(limit, temp_offset);
+      const response = await getProductsByCategoryData(
+        limit,
+        temp_offset,
+        category
+      );
       // console.log(response.data.data);
       setData(response.data.products);
       setCount(response.data.count);
@@ -55,7 +65,7 @@ const Product = () => {
   };
 
   return (
-    <>
+    <div>
       <div
         className="site-card-wrapper"
         style={{ textAlign: "center", marginTop: "5%" }}
@@ -177,7 +187,8 @@ const Product = () => {
           )}
         </Spin>
       </div>
-    </>
+    </div>
   );
 };
-export default Product;
+
+export default CategoryIndex;
