@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { getCartData, getCartDelete } from "../../../actions";
 
 import { Button, List, Divider, Popconfirm, message, notification } from "antd";
@@ -24,6 +25,7 @@ const CartIndex = () => {
   useEffect(() => {
     const callDataApi = async () => {
       //console.log(user.userId);
+
       const response = await getCartData(userId);
       //  console.log(response.data);
       setData(response.data.cart);
@@ -54,6 +56,50 @@ const CartIndex = () => {
       placement: "topRight",
       top: 150,
     });
+  };
+
+  const paymentHandler = async (e, data) => {
+    const API_URL = "http://localhost:8080/orders/";
+    // console.log("e", e);
+    // console.log("data", data);
+    e.preventDefault();
+
+    //   const orderUrl = `${API_URL}order`;
+    // const response = await axios.get(orderUrl);
+    //  const { data } = response;
+    let temp_amount = data.product.is_discount
+      ? (data.product.price -
+          (data.product.price * data.product.discount) / 100) *
+        data.quantity *
+        100
+      : data.product.price * data.quantity * 100;
+    const options = {
+      key: process.env.REACT_APP_RAZORPAY_ID,
+      name: "E-commerce Multivendor",
+      description: "Developed By videsh and manish",
+      amount: data.product.is_discount
+        ? (data.product.price -
+            (data.product.price * data.product.discount) / 100) *
+          data.quantity *
+          100
+        : data.product.price * data.quantity * 100, // 2000 paise = INR 20, amount in paisa
+      // order_id: data.id,
+      handler: async (response) => {
+        try {
+          const paymentId = response.razorpay_payment_id;
+          const url = `${API_URL}capture/${paymentId}`;
+          const captureResponse = await axios.post(url, { temp_amount });
+          console.log("captureResponse", captureResponse);
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      theme: {
+        color: "#686CFD",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.open();
   };
 
   return (
@@ -152,7 +198,11 @@ const CartIndex = () => {
                   </div>
 
                   <div>
-                    <Button disabled type="primary" shape="round">
+                    <Button
+                      onClick={(e) => paymentHandler(e, item)}
+                      type="primary"
+                      shape="round"
+                    >
                       <ShoppingCartOutlined />
                       Place Order
                     </Button>

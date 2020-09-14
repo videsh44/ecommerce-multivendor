@@ -88,3 +88,10 @@ export const getCartDelete = async (selected_id) => {
   const response = await crmApi().delete(`/cart/${selected_id}`);
   return response;
 };
+
+/**
+export const getPaymentCheckout = async () => {
+  const response = await crmApi().get(`/products/${selected_id}`);
+  return response;
+};
+ */

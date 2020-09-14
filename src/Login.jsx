@@ -78,7 +78,7 @@ const Login = (props) => {
 
     try {
       const response = await adminLogin(formValues);
-      // console.log(response);
+      // console.log(response.data);
       if (response.status === 200) {
         props.loginUser(response.data);
         localStorage.setItem("user_type", response.data.user_type);
