@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/ecommerce-multivendor/static/css/main.1feec82f.chunk.css",
+    "main.js": "/ecommerce-multivendor/static/js/main.8038eba7.chunk.js",
+    "main.js.map": "/ecommerce-multivendor/static/js/main.8038eba7.chunk.js.map",
+    "runtime-main.js": "/ecommerce-multivendor/static/js/runtime-main.2ef180f9.js",
+    "runtime-main.js.map": "/ecommerce-multivendor/static/js/runtime-main.2ef180f9.js.map",
+    "static/css/2.48db8b0f.chunk.css": "/ecommerce-multivendor/static/css/2.48db8b0f.chunk.css",
+    "static/js/2.73213b73.chunk.js": "/ecommerce-multivendor/static/js/2.73213b73.chunk.js",
+    "static/js/2.73213b73.chunk.js.map": "/ecommerce-multivendor/static/js/2.73213b73.chunk.js.map",
+    "index.html": "/ecommerce-multivendor/index.html",
+    "precache-manifest.47584726cc630931d81366a89a8b6173.js": "/ecommerce-multivendor/precache-manifest.47584726cc630931d81366a89a8b6173.js",
+    "service-worker.js": "/ecommerce-multivendor/service-worker.js",
+    "static/css/2.48db8b0f.chunk.css.map": "/ecommerce-multivendor/static/css/2.48db8b0f.chunk.css.map",
+    "static/css/main.1feec82f.chunk.css.map": "/ecommerce-multivendor/static/css/main.1feec82f.chunk.css.map",
+    "static/js/2.73213b73.chunk.js.LICENSE.txt": "/ecommerce-multivendor/static/js/2.73213b73.chunk.js.LICENSE.txt",
+    "static/media/bg-breadcrumb.jpg": "/ecommerce-multivendor/static/media/bg-breadcrumb.eba72506.jpg",
+    "static/media/logo.png": "/ecommerce-multivendor/static/media/logo.87043a5e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ef180f9.js",
+    "static/css/2.48db8b0f.chunk.css",
+    "static/js/2.73213b73.chunk.js",
+    "static/css/main.1feec82f.chunk.css",
+    "static/js/main.8038eba7.chunk.js"
+  ]
+}
