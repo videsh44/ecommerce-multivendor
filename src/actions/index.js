@@ -95,3 +95,8 @@ export const getPaymentCheckout = async () => {
   return response;
 };
  */
+
+export const getCreateOneOrder = async (values) => {
+  const response = await crmApi().post("/orders/create", values);
+  return response;
+};

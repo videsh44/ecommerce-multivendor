@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { getCartData, getCartDelete } from "../../../actions";
+import {
+  getCartData,
+  getCartDelete,
+  getCreateOneOrder,
+} from "../../../actions";
 
 import { Button, List, Divider, Popconfirm, message, notification } from "antd";
 import { ShoppingCartOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -24,7 +28,7 @@ const CartIndex = () => {
 
   useEffect(() => {
     const callDataApi = async () => {
-      //console.log(user.userId);
+      console.log(process.env.REACT_APP_RAZORPAY_ID);
 
       const response = await getCartData(userId);
       //  console.log(response.data);
@@ -61,7 +65,10 @@ const CartIndex = () => {
   const paymentHandler = async (e, data) => {
     const API_URL = "http://localhost:8080/orders/";
     // console.log("e", e);
-    // console.log("data", data);
+    console.log("data", data);
+    let selected_userID = data.user;
+    let selected_quantity = data.quantity;
+    let selected_product = data.product.__id;
     e.preventDefault();
 
     //   const orderUrl = `${API_URL}order`;
@@ -74,7 +81,7 @@ const CartIndex = () => {
         100
       : data.product.price * data.quantity * 100;
     const options = {
-      key: process.env.REACT_APP_RAZORPAY_ID,
+      key: process.env.REACT_APP_RAZORPAY_ID_KEY,
       name: "E-commerce Multivendor",
       description: "Developed By videsh and manish",
       amount: data.product.is_discount
@@ -89,7 +96,18 @@ const CartIndex = () => {
           const paymentId = response.razorpay_payment_id;
           const url = `${API_URL}capture/${paymentId}`;
           const captureResponse = await axios.post(url, { temp_amount });
-          console.log("captureResponse", captureResponse);
+
+          if (captureResponse.status === 200) {
+            let hmari_values = {
+              productId: selected_product,
+              userId: selected_userID,
+              quantity: selected_quantity,
+            };
+
+            //   const orderResponse = await getCreateOneOrder(hmari_values);
+          }
+
+          console.log("captureResponse", captureResponse.status);
         } catch (err) {
           console.log(err);
         }

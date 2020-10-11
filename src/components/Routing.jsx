@@ -82,6 +82,14 @@ const Routing = (props) => {
           />
 
           <PrivateRoute
+            path="/ecommerce-multivendor"
+            exact
+            component={Home}
+            user={user}
+            dispatch={dispatch}
+          />
+
+          <PrivateRoute
             path="/product/:id"
             exact
             component={ProductDetails}

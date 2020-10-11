@@ -3,7 +3,7 @@ import { Menu, Badge } from "antd";
 
 import { ShoppingCartOutlined, CaretDownOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
-import { appLogo } from "../../assets/IconAssets";
+import { appLogo, logo } from "../../assets/IconAssets";
 import history from "../../history";
 
 const { SubMenu } = Menu;
@@ -58,7 +58,7 @@ const NavbarIndex = (props) => {
     >
       {/**.....................logo starts ............................ */}
       <div style={{ width: "20%" }}>
-        <img src={appLogo} style={{ width: "100%", objectFit: "contain" }} />
+        <img src={logo} style={{ width: "100%", objectFit: "contain" }} />
         {/**  <div className="logo" /> */}
       </div>
       {/**.....................logo ends ............................ */}
@@ -68,9 +68,7 @@ const NavbarIndex = (props) => {
           <Menu.Item onClick={() => history.push("/home")} key="mail">
             <span style={{ color: "#45ab67" }}>Home</span>
           </Menu.Item>
-          <Menu.Item key="app">
-            <span style={{ color: "#45ab67" }}>Pages</span>
-          </Menu.Item>
+
           <SubMenu
             title="Category"
             icon={<CaretDownOutlined style={{ color: "#45ab67" }} />}
@@ -88,9 +86,7 @@ const NavbarIndex = (props) => {
               ))}
             </Menu.ItemGroup>
           </SubMenu>
-          <Menu.Item key="alipay">
-            <span style={{ color: "#45ab67" }}>Daily Deals</span>
-          </Menu.Item>
+
           {userType === "admin" ? (
             <Menu.Item key="admin" onClick={onAdminPageClick}>
               <span style={{ color: "#45ab67" }}>Admin</span>

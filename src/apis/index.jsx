@@ -2,7 +2,7 @@ import axios from "axios";
 
 const crmApi = () => {
   return axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "https://ecommerce-videsh.herokuapp.com",
   });
 };
 
