@@ -54,7 +54,7 @@ const Login = (props) => {
     if (props.userAuth.user_type === "admin") {
       history.push("/admin/product");
     } else if (props.userAuth.user_type === "user") {
-      history.push("/home");
+      history.push("/ecommerce-multivendor");
     }
 
     setCookies();
