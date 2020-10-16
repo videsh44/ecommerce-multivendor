@@ -98,3 +98,30 @@
   background: #398e55;
   color: #fff;
 }
+
+.top__right__logout {
+  width: 48%;
+}
+
+.top__bar__info {
+  width: 48%;
+}
+
+.top__right__logout__btn {
+  float: right;
+}
+
+@media screen and (max-width: 900px) {
+  .top__bar__info {
+    display: none;
+  }
+
+  .top__right__logout {
+    width: 100%;
+    text-align: center;
+  }
+
+  .top__right__logout__btn {
+    float: none;
+  }
+}

@@ -23,6 +23,7 @@ import { useSelector, useDispatch, connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { withCookies } from "react-cookie";
 import NavbarIndex from "./navbar/NavbarIndex";
+import "./App.css";
 
 const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
@@ -72,21 +73,22 @@ const MenuIndex = (props) => {
           style={{ position: "fixed", zIndex: 12345, width: "100%" }}
         >
           <div style={{ display: "flex" }}>
-            <div style={{ width: "48%" }}>
+            <div className="top__bar__info">
               <span>
                 <PhoneOutlined className="menu-item-icon" />
-                <span className="top-menu-items"> Hotline : 1234-567-899</span>
+                <span className="top-menu-items"> Helpline : 9811346435</span>
               </span>
               <span style={{ marginLeft: "15px" }}>
                 <MailOutlined className="menu-item-icon" />
                 <span className="top-menu-items">
-                  Email : support@domain.com
+                  Email : videshghodarop@gmail.com
                 </span>
               </span>
             </div>
-            <div style={{ width: "48%" }}>
+            <div className="top__right__logout">
               <Dropdown.Button
-                style={{ float: "right" }}
+                className="top__right__logout__btn"
+                // style={{ float: "right" }}
                 overlay={userMenu}
                 placement="bottomCenter"
                 icon={<UserOutlined />}
