@@ -65,10 +65,11 @@ const CartIndex = () => {
   const paymentHandler = async (e, data) => {
     const API_URL = "http://localhost:8080/orders/";
     // console.log("e", e);
-    console.log("data", data);
+    //  console.log("data", data);
     let selected_userID = data.user;
     let selected_quantity = data.quantity;
     let selected_product = data.product.__id;
+    let selected_cart_id = data._id;
     e.preventDefault();
 
     //   const orderUrl = `${API_URL}order`;
@@ -83,7 +84,7 @@ const CartIndex = () => {
     const options = {
       key: process.env.REACT_APP_RAZORPAY_ID_KEY,
       name: "E-commerce Multivendor",
-      description: "Developed By videsh and manish",
+      description: "Developed By videsh",
       amount: data.product.is_discount
         ? (data.product.price -
             (data.product.price * data.product.discount) / 100) *
@@ -104,7 +105,8 @@ const CartIndex = () => {
               quantity: selected_quantity,
             };
 
-            //   const orderResponse = await getCreateOneOrder(hmari_values);
+            const orderResponse = await getCreateOneOrder(hmari_values);
+            await getCartDelete(selected_cart_id);
           }
 
           console.log("captureResponse", captureResponse.status);

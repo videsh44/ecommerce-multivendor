@@ -131,8 +131,7 @@ const MenuIndex = (props) => {
         <Footer
           style={{ textAlign: "center", background: "#45AB67", color: "#fff" }}
         >
-          videsh gujjar Design ©2020 Created by unprofessional
-          developers(videsh,manish)
+          videsh gujjar Design ©2020 Created by unprofessional developers
         </Footer>
       </Layout>
     </div>

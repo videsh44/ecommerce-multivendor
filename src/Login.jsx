@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { message, Input, Button } from "antd";
+import { message, Input, Button, Spin } from "antd";
 import { connect } from "react-redux";
 import { loginUser, logoutUser } from "../src/actions/authActions";
 import { adminLogin } from "../src/actions";
@@ -13,6 +13,7 @@ const Login = (props) => {
   //const [isLoged, setIsLoged] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [screenType, setScreenType] = useState("login");
 
@@ -77,6 +78,7 @@ const Login = (props) => {
     // props.loginUser(formValues);
 
     try {
+      setLoading(true);
       const response = await adminLogin(formValues);
       // console.log(response.data);
       if (response.status === 200) {
@@ -85,7 +87,9 @@ const Login = (props) => {
         //  window.location.reload();
         // history.push("/home");
       }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       message.warning(error.response.data.error.message);
     }
   };
@@ -101,93 +105,104 @@ const Login = (props) => {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage:
-          "url('https://i.pinimg.com/originals/bc/27/60/bc27609dca848b8853968d5cf11e6692.jpg')",
-        width: "100%",
-        backgroundRepeat: "repeat-x",
-        backgroundSize: "cover",
-        minHeight: "100vh",
-      }}
-    >
-      <div className="container">
+    <>
+      <Spin spinning={loading} tip="Loading...">
         <div
           style={{
-            maxWidth: "520px",
-            margin: "0px auto",
-            padding: "30px",
-            background: "#fff",
-            boxShadow: "-1px 4px 28px 0px rgba(0,0,0,0.75)",
-            marginTop: "15%",
-            color: "#000",
+            backgroundImage:
+              "url('https://i.pinimg.com/originals/bc/27/60/bc27609dca848b8853968d5cf11e6692.jpg')",
+            width: "100%",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "cover",
+            minHeight: "100vh",
           }}
         >
-          {screenType === "login" ? (
-            <div>
-              <div style={{ textAlign: "center" }}>
-                <img
-                  src="https://img.icons8.com/carbon-copy/2x/login-rounded-right.png"
-                  width="100px"
-                />
-              </div>
-              <div style={{ margin: "30px" }}>
-                <label>Username</label>
-                <Input
-                  onChange={onUserNameChange}
-                  prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-                  placeholder="username "
-                />
-              </div>
-              <div style={{ margin: "30px" }}>
-                <label>Password</label>
-                <Input
-                  onChange={onPassChange}
-                  prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-                  type="password"
-                  placeholder="Password"
-                />
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <Button
-                  onClick={handleLogin}
-                  type="primary"
-                  className="login-form-btn"
-                >
-                  <LoginOutlined />
-                  Log in
-                </Button>
-              </div>
-              <div
-                style={{
-                  textAlign: "center",
-                  marginTop: "40px",
-                  fontSize: "16px",
-                }}
-              >
-                <span style={{ textAlign: "center", marginTop: "40px" }}>
-                  <h6>OR</h6>
-                </span>
-                <Button onClick={() => setScreenType("signup")}>
-                  No account? Create one here
-                </Button>
-              </div>
+          <div className="container">
+            <div
+              style={{
+                maxWidth: "520px",
+                margin: "0px auto",
+                padding: "30px",
+                background: "#fff",
+                boxShadow: "-1px 4px 28px 0px rgba(0,0,0,0.75)",
+                marginTop: "15%",
+                color: "#000",
+              }}
+            >
+              {screenType === "login" ? (
+                <div>
+                  <div style={{ textAlign: "center" }}>
+                    <img
+                      src="https://img.icons8.com/carbon-copy/2x/login-rounded-right.png"
+                      width="100px"
+                    />
+                  </div>
+                  <div style={{ margin: "30px" }}>
+                    <label>Username</label>
+                    <Input
+                      onChange={onUserNameChange}
+                      prefix={
+                        <UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+                      }
+                      placeholder="username "
+                    />
+                  </div>
+                  <div style={{ margin: "30px" }}>
+                    <label>Password</label>
+                    <Input
+                      onChange={onPassChange}
+                      prefix={
+                        <LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+                      }
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div style={{ textAlign: "center" }}>
+                    <Button
+                      onClick={handleLogin}
+                      type="primary"
+                      className="login-form-btn"
+                    >
+                      <LoginOutlined />
+                      Log in
+                    </Button>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      marginTop: "40px",
+                      fontSize: "16px",
+                    }}
+                  >
+                    <span style={{ textAlign: "center", marginTop: "40px" }}>
+                      <h6>OR</h6>
+                    </span>
+                    <Button onClick={() => setScreenType("signup")}>
+                      No account? Create one here
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <SignUp setScreenType={setScreenType} />
+                  <div
+                    style={{
+                      textAlign: "center",
+                      marginTop: "40px !important",
+                    }}
+                  >
+                    <Button onClick={() => setScreenType("login")}>
+                      Already a user Login
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
-          ) : (
-            <div>
-              <SignUp setScreenType={setScreenType} />
-              <div
-                style={{ textAlign: "center", marginTop: "40px !important" }}
-              >
-                <Button onClick={() => setScreenType("login")}>
-                  Already a user Login
-                </Button>
-              </div>
-            </div>
-          )}
+          </div>
         </div>
-      </div>
-    </div>
+      </Spin>
+    </>
   );
 };
 
