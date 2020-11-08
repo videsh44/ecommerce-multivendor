@@ -175,7 +175,7 @@ const Product = () => {
                       >
                         <Button
                           type="danger"
-                          style={{ marginRight: "10px" }}
+                          style={{ marginRight: "10px", marginBottom: "10px" }}
                           onClick={() => onAddToCartClick(item)}
                           //className="addcart"
                         >

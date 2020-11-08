@@ -100,6 +100,19 @@ const MenuIndex = (props) => {
           </div>
         </Header>
 
+        <div
+          style={{
+            //  position: "fixed",
+            //  top: "48px",
+            marginTop: 48,
+            width: "100%",
+            background: "#17A2B8",
+            color: "#fff",
+          }}
+        >
+          <NavbarIndex />
+        </div>
+        {/**
         <Header
           style={{
             //  position: "fixed",
@@ -111,11 +124,12 @@ const MenuIndex = (props) => {
         >
           <NavbarIndex />
         </Header>
+         */}
         <Content
           className="site-layout"
           style={{
             padding: "0 50px",
-            marginTop: 48,
+            // marginTop: 48,
             background: "#E5EFF4",
           }}
         >

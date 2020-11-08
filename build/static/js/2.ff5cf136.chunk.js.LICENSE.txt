@@ -1,4 +1,15 @@
 /*
+ *          __        ___
+ *    _____/ /___  __/ (_)____
+ *   / ___/ __/ / / / / / ___/
+ *  (__  ) /_/ /_/ / / (__  )
+ * /____/\__/\__, /_/_/____/
+ *          /____/
+ *
+ * light - weight css preprocessor @licence MIT
+ */
+
+/*
 object-assign
 (c) Sindre Sorhus
 @license MIT
@@ -16,6 +27,24 @@ object-assign
  * Copyright(c) 2015 Douglas Christopher Wilson
  * MIT Licensed
  */
+
+/*!
+ * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+/*!
+ * isobject <https://github.com/jonschlinkert/isobject>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+/*! react-buttons v1.3.1 | (c) 2018 Trend Micro Inc. | MIT | https://github.com/trendmicro-frontend/react-buttons */
+
+/*! react-dropdown v1.4.0 | (c) 2020 Trend Micro Inc. | MIT | https://github.com/trendmicro-frontend/react-dropdown */
 
 /** @license React v0.15.0
  * scheduler.production.min.js
@@ -44,6 +73,15 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
+/** @license React v16.14.0
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /** @license React v16.8.6
  * react-is.production.min.js
  *
@@ -55,15 +93,6 @@ object-assign
 
 /** @license React v16.9.0
  * react-dom.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/** @license React v16.9.0
- * react.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
