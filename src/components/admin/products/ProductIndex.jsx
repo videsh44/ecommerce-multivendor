@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Table,
   Pagination,
   Button,
   Modal,
-  Card,
   Popconfirm,
   Divider,
   message,
-} from "antd";
-import { getProductsData, getProductDelete } from "../../../actions";
-import AddNewProduct from "./AddNewProduct";
-import EditProduct from "./EditProduct";
-import { PlusCircleOutlined } from "@ant-design/icons";
+} from 'antd';
+import { getProductsData, getProductDelete } from '../../../actions';
+import AddNewProduct from './AddNewProduct';
+import EditProduct from './EditProduct';
+import { PlusCircleOutlined } from '@ant-design/icons';
 
 const ProductIndex = () => {
   const [productList, setProductList] = useState([]);
@@ -40,64 +39,65 @@ const ProductIndex = () => {
     };
     callApi();
     return () => {};
+    // eslint-disable-next-line
   }, [loadAgain]);
 
   const columnName = [
     {
-      title: "Product Name",
-      dataIndex: "name",
-      key: "name",
+      title: 'Product Name',
+      dataIndex: 'name',
+      key: 'name',
       //  width: 150,
       render: (record) => {
         return (
           <div>
-            {record === null || record === "" || record === undefined
-              ? "-"
+            {record === null || record === '' || record === undefined
+              ? '-'
               : record}
           </div>
         );
       },
     },
     {
-      title: "category",
-      dataIndex: "category",
-      key: "category",
+      title: 'category',
+      dataIndex: 'category',
+      key: 'category',
       // width: 150,
       render: (record) => {
         return (
           <div>
-            {record === null || record === "" || record === undefined
-              ? "-"
+            {record === null || record === '' || record === undefined
+              ? '-'
               : record}
           </div>
         );
       },
     },
     {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
       // width: 100,
       render: (record) => {
         return (
           <div>
-            {record === null || record === "" || record === undefined
-              ? "-"
+            {record === null || record === '' || record === undefined
+              ? '-'
               : record}
           </div>
         );
       },
     },
     {
-      title: "Discount",
-      dataIndex: "discount",
-      key: "discount",
+      title: 'Discount',
+      dataIndex: 'discount',
+      key: 'discount',
       width: 100,
       render: (record) => {
         return (
-          <div style={{ textAlign: "center", fontWeight: 800 }}>
-            {record === null || record === "" || record === undefined
-              ? "-"
+          <div style={{ textAlign: 'center', fontWeight: 800 }}>
+            {record === null || record === '' || record === undefined
+              ? '-'
               : record}
             %
           </div>
@@ -106,8 +106,8 @@ const ProductIndex = () => {
     },
 
     {
-      title: "Actions",
-      key: "action",
+      title: 'Actions',
+      key: 'action',
       render: (record) => (
         <span>
           <span>
@@ -120,9 +120,9 @@ const ProductIndex = () => {
               <Button
                 type="link"
                 style={{
-                  color: "red",
+                  color: 'red',
                   padding: 0,
-                  marginRight: "10px",
+                  marginRight: '10px',
                 }}
               >
                 Delete
@@ -134,7 +134,7 @@ const ProductIndex = () => {
             <Button
               type="link"
               onClick={() => onEdit(record)}
-              style={{ padding: 0, marginRight: "10px" }}
+              style={{ padding: 0, marginRight: '10px' }}
             >
               Update
             </Button>
@@ -158,7 +158,7 @@ const ProductIndex = () => {
       let selectedId = item._id;
       setLoading(true);
       await getProductDelete(selectedId);
-      message.success("Product Deleted");
+      message.success('Product Deleted');
       setLoading(false);
       setLoadAgain(!loadAgain);
     } catch (error) {
@@ -183,7 +183,7 @@ const ProductIndex = () => {
 
   return (
     <div>
-      <div style={{ textAlign: "right", marginBottom: "40px" }}>
+      <div style={{ textAlign: 'right', marginBottom: '40px' }}>
         <Button type="primary" onClick={() => createNew()}>
           <PlusCircleOutlined /> Add New Product
         </Button>
@@ -198,7 +198,7 @@ const ProductIndex = () => {
         />
       </div>
 
-      <div style={{ marginTop: "30px", textAlign: "right" }}>
+      <div style={{ marginTop: '30px', textAlign: 'right' }}>
         <Pagination
           current={(offSet + limit) / limit}
           pageSize={limit}
@@ -210,7 +210,7 @@ const ProductIndex = () => {
       {/* create new modal starts */}
       {createNewModalShow === true ? (
         <Modal
-          style={{ minWidth: "600px" }}
+          style={{ minWidth: '600px' }}
           title="Add New Product"
           closable={true}
           footer={null}
@@ -230,7 +230,7 @@ const ProductIndex = () => {
       {/*EDIT MODAL STARTS */}
       {editModalShow === true ? (
         <Modal
-          style={{ minWidth: "700px" }}
+          style={{ minWidth: '700px' }}
           title="Edit Product"
           closable={true}
           footer={null}

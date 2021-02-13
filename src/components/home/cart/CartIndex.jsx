@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   getCartData,
   getCartDelete,
   getCreateOneOrder,
-} from "../../../actions";
+} from '../../../actions';
 
-import { Button, List, Divider, Popconfirm, message, notification } from "antd";
-import { ShoppingCartOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useSelector } from "react-redux";
-import "./cart.css";
-import BackgroundBanner from "../../elements/BackgroundBanner";
-import CartServicesBox from "../../elements/CartServicesBox";
+import { Button, List, Divider, Popconfirm, notification } from 'antd';
+import { ShoppingCartOutlined, DeleteOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
+import './cart.css';
+import BackgroundBanner from '../../elements/BackgroundBanner';
+import CartServicesBox from '../../elements/CartServicesBox';
 import {
   reassuranceThreeLogo,
   reassuranceTwoLogo,
   truckLogo,
-} from "../../../assets/IconAssets";
+} from '../../../assets/IconAssets';
 
 const CartIndex = () => {
   const user = useSelector((state) => state.userAuth);
@@ -38,6 +38,7 @@ const CartIndex = () => {
     callDataApi();
 
     return () => {};
+    // eslint-disable-next-line
   }, [loadAgain]);
 
   const onDelete = async (item) => {
@@ -57,13 +58,13 @@ const CartIndex = () => {
     notification.success({
       message: `Product Deleted from Cart `,
 
-      placement: "topRight",
+      placement: 'topRight',
       top: 150,
     });
   };
 
   const paymentHandler = async (e, data) => {
-    const API_URL = "http://localhost:8080/orders/";
+    const API_URL = 'http://localhost:8080/orders/';
     // console.log("e", e);
     //  console.log("data", data);
     let selected_userID = data.user;
@@ -83,8 +84,8 @@ const CartIndex = () => {
       : data.product.price * data.quantity * 100;
     const options = {
       key: process.env.REACT_APP_RAZORPAY_ID_KEY,
-      name: "E-commerce Multivendor",
-      description: "Developed By videsh",
+      name: 'E-commerce Multivendor',
+      description: 'Developed By videsh',
       amount: data.product.is_discount
         ? (data.product.price -
             (data.product.price * data.product.discount) / 100) *
@@ -104,18 +105,18 @@ const CartIndex = () => {
               userId: selected_userID,
               quantity: selected_quantity,
             };
-
+            // eslint-disable-next-line
             const orderResponse = await getCreateOneOrder(hmari_values);
             await getCartDelete(selected_cart_id);
           }
 
-          console.log("captureResponse", captureResponse.status);
+          console.log('captureResponse', captureResponse.status);
         } catch (err) {
           console.log(err);
         }
       },
       theme: {
-        color: "#686CFD",
+        color: '#686CFD',
       },
     };
     const rzp1 = new window.Razorpay(options);
@@ -125,7 +126,7 @@ const CartIndex = () => {
   return (
     <div
       style={{
-        background: "#fff",
+        background: '#fff',
         //  height: "100vh"
       }}
     >
@@ -150,7 +151,7 @@ const CartIndex = () => {
                     onConfirm={() => onDelete(item)}
                   >
                     <DeleteOutlined
-                      style={{ fontSize: "25px", color: "red" }}
+                      style={{ fontSize: '25px', color: 'red' }}
                     />
                   </Popconfirm>,
                 ]}
@@ -158,23 +159,24 @@ const CartIndex = () => {
                 <List.Item.Meta
                   avatar={
                     <img
+                      alt=""
                       style={{
-                        width: "80px",
-                        border: "1px solid black",
-                        objectFit: "contain",
+                        width: '80px',
+                        border: '1px solid black',
+                        objectFit: 'contain',
                       }}
                       src={item.product.productImage}
                     />
                   }
                   title={
-                    <div style={{ fontSize: "18px", fontWeight: 700 }}>
+                    <div style={{ fontSize: '18px', fontWeight: 700 }}>
                       {item.product.name}
                     </div>
                   }
                   description={
                     item.product.is_discount ? (
                       <span>
-                        Rs{" "}
+                        Rs{' '}
                         {item.product.price -
                           (item.product.price * item.product.discount) / 100}
                       </span>
@@ -184,19 +186,19 @@ const CartIndex = () => {
                   }
                 />
 
-                <div style={{ display: "flex" }}>
+                <div style={{ display: 'flex' }}>
                   {/**TOTAL PRICE STARTS */}
                   <div
                     style={{
-                      marginRight: "80px",
-                      fontSize: "18px",
-                      color: "#C64E4E",
+                      marginRight: '80px',
+                      fontSize: '18px',
+                      color: '#C64E4E',
                       fontWeight: 800,
                     }}
                   >
                     {item.product.is_discount ? (
                       <span>
-                        Rs{" "}
+                        Rs{' '}
                         {(item.product.price -
                           (item.product.price * item.product.discount) / 100) *
                           item.quantity}
@@ -209,8 +211,8 @@ const CartIndex = () => {
 
                   <div
                     style={{
-                      marginRight: "30px",
-                      fontSize: "18px",
+                      marginRight: '30px',
+                      fontSize: '18px',
                       fontWeight: 700,
                     }}
                   >
@@ -226,39 +228,6 @@ const CartIndex = () => {
                       <ShoppingCartOutlined />
                       Place Order
                     </Button>
-                    {/** 
-                    <div style={{ display: "flex" }}>
-                      <div>
-                        <MinusSquareOutlined
-                          // onClick={onDecreaseQuantityClick}
-                          style={{
-                            fontSize: "30px",
-                            color: "red",
-                            cursor: quantity === 1 ? "not-allowed" : "pointer",
-                          }}
-                        />
-                      </div>
-                      <div
-                        style={{
-                          padding: "2px 20px",
-                          border: "1px solid black",
-                          fontWeight: 900,
-                        }}
-                      >
-                        {quantity}
-                      </div>
-
-                      
-                      <div>
-                        <PlusSquareOutlined
-                          //  onClick={onIncreaseQuantityClick}
-                          style={{ fontSize: "30px", color: "#45ab67" }}
-                        />
-                      </div>
-
-                      
-                    </div>
-                  */}
                   </div>
                 </div>
               </List.Item>
@@ -271,29 +240,29 @@ const CartIndex = () => {
         <div className="cart__right">
           <div
             style={{
-              border: "1px solid silver",
-              padding: "40px",
-              marginTop: "30px",
+              border: '1px solid silver',
+              padding: '40px',
+              marginTop: '30px',
             }}
           >
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-evenly",
+                display: 'flex',
+                justifyContent: 'space-evenly',
               }}
             >
               <div className="bold__text">Total : </div>
               <div className="bold__text">Rs 140000</div>
             </div>
 
-            <div style={{ textAlign: "center", marginTop: "30px" }}>
+            <div style={{ textAlign: 'center', marginTop: '30px' }}>
               <Button disabled type="primary" shape="round" size="large">
                 <ShoppingCartOutlined />
                 Place Order
               </Button>
             </div>
           </div>
-          <div style={{ marginTop: "30px" }}>
+          <div style={{ marginTop: '30px' }}>
             <CartServicesBox
               logo={truckLogo}
               text="Delivery policy - Edit with Customer reassurance module"

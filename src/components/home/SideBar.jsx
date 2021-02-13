@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { Menu, Button } from "antd";
+import React from 'react';
+import { Menu } from 'antd';
 import {
   AppstoreOutlined,
   MailOutlined,
   SettingOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 const SideBar = () => {
-  const [collapsed, setCollapsed] = useState("false");
-
   return (
     <Menu
       style={{
-        height: "560px",
-        overflowY: "auto",
-        width: "255px",
-        maxWidth: "205px",
-        overflowX: "hidden",
+        height: '560px',
+        overflowY: 'auto',
+        width: '255px',
+        maxWidth: '205px',
+        overflowX: 'hidden',
       }}
-      defaultSelectedKeys={["1"]}
-      defaultOpenKeys={["sub1"]}
+      defaultSelectedKeys={['1']}
+      defaultOpenKeys={['sub1']}
       mode="inline"
       className="menu"
     >

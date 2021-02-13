@@ -1,45 +1,30 @@
-import React, { useState, useEffect } from "react";
-import {
-  Layout,
-  Menu,
-  Dropdown,
-  Button,
-  message,
-  Tooltip,
-  Divider,
-  Popconfirm,
-  Badge,
-} from "antd";
+import React from 'react';
+import { Layout, Menu, Dropdown, Popconfirm, Badge } from 'antd';
 import {
   PhoneOutlined,
   MailOutlined,
   UserOutlined,
   ToolOutlined,
   LogoutOutlined,
-} from "@ant-design/icons";
-
-import history from "../history";
-import { useSelector, useDispatch, connect } from "react-redux";
-import { logoutUser } from "../actions/authActions";
-import { withCookies } from "react-cookie";
-import NavbarIndex from "./navbar/NavbarIndex";
-import "./App.css";
+} from '@ant-design/icons';
+import { connect } from 'react-redux';
+import { logoutUser } from '../actions/authActions';
+import { withCookies } from 'react-cookie';
+import NavbarIndex from './navbar/NavbarIndex';
+import './App.css';
 
 const MenuIndex = (props) => {
   const { Header, Content, Footer } = Layout;
-  const dispatch = useDispatch();
-
-  // console.log("props.userAuth", props.user);
 
   const onLogOutUser = () => {
     const { cookies } = props;
-    cookies.remove("Authorization", { path: "/" });
-    cookies.remove("isSignedIn", { path: "/" });
-    cookies.remove("userId", { path: "/" });
-    cookies.remove("user_type", { path: "/" });
-    cookies.remove("userName", { path: "/" });
+    cookies.remove('Authorization', { path: '/' });
+    cookies.remove('isSignedIn', { path: '/' });
+    cookies.remove('userId', { path: '/' });
+    cookies.remove('user_type', { path: '/' });
+    cookies.remove('userName', { path: '/' });
 
-    localStorage.removeItem("user_type");
+    localStorage.removeItem('user_type');
 
     // dispatch(logoutUser());
     props.logoutUser();
@@ -67,18 +52,18 @@ const MenuIndex = (props) => {
 
   return (
     <div>
-      <Layout style={{ background: "#fff" }}>
+      <Layout style={{ background: '#fff' }}>
         <Header
           className="header"
-          style={{ position: "fixed", zIndex: 12345, width: "100%" }}
+          style={{ position: 'fixed', zIndex: 12345, width: '100%' }}
         >
-          <div style={{ display: "flex" }}>
+          <div style={{ display: 'flex' }}>
             <div className="top__bar__info">
               <span>
                 <PhoneOutlined className="menu-item-icon" />
                 <span className="top-menu-items"> Helpline : 9811346435</span>
               </span>
-              <span style={{ marginLeft: "15px" }}>
+              <span style={{ marginLeft: '15px' }}>
                 <MailOutlined className="menu-item-icon" />
                 <span className="top-menu-items">
                   Email : videshghodarop@gmail.com
@@ -94,7 +79,7 @@ const MenuIndex = (props) => {
                 icon={<UserOutlined />}
               >
                 <Badge color="#87d068" />
-                {props.user.userName ? props.user.userName : "My Account"}
+                {props.user.userName ? props.user.userName : 'My Account'}
               </Dropdown.Button>
             </div>
           </div>
@@ -105,38 +90,26 @@ const MenuIndex = (props) => {
             //  position: "fixed",
             //  top: "48px",
             marginTop: 48,
-            width: "100%",
-            background: "#17A2B8",
-            color: "#fff",
+            width: '100%',
+            background: '#17A2B8',
+            color: '#fff',
           }}
         >
           <NavbarIndex />
         </div>
-        {/**
-        <Header
-          style={{
-            //  position: "fixed",
-            //  top: "48px",
-            marginTop: 48,
-            width: "100%",
-            background: "#FFFFFF",
-          }}
-        >
-          <NavbarIndex />
-        </Header>
-         */}
+
         <Content
           className="site-layout"
           style={{
-            padding: "0 50px",
+            padding: '0 50px',
             // marginTop: 48,
-            background: "#E5EFF4",
+            background: '#E5EFF4',
           }}
         >
           <div
             style={{
-              height: "100vh",
-              overflowY: "auto",
+              height: '100vh',
+              overflowY: 'auto',
 
               //  border: "1px solid red"
             }}
@@ -145,7 +118,7 @@ const MenuIndex = (props) => {
           </div>
         </Content>
         <Footer
-          style={{ textAlign: "center", background: "#45AB67", color: "#fff" }}
+          style={{ textAlign: 'center', background: '#45AB67', color: '#fff' }}
         >
           videsh gujjar Design ©2020 Created by unprofessional developers
         </Footer>

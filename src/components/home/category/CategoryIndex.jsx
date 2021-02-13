@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { getProductsByCategoryData, getAddToCart } from "../../../actions";
+import React, { useState, useEffect } from 'react';
+import { getProductsByCategoryData, getAddToCart } from '../../../actions';
 
-import {
-  Card,
-  Col,
-  Row,
-  Button,
-  Pagination,
-  Spin,
-  Empty,
-  notification,
-} from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
-import history from "../../../history";
-import "./category.css";
-import { useSelector } from "react-redux";
+import { Spin, Empty, notification } from 'antd';
+import history from '../../../history';
+import './category.css';
+import { useSelector } from 'react-redux';
+import CommonProduct from '../../elements/CommonProduct';
 
 const CategoryIndex = (props) => {
   const category = props.match.params.category;
@@ -48,6 +39,7 @@ const CategoryIndex = (props) => {
     };
     callApi();
     return () => {};
+    // eslint-disable-next-line
   }, [category]);
 
   const onGoToDetailsClick = (data) => {
@@ -86,6 +78,7 @@ const CategoryIndex = (props) => {
       quantity: temp_quantity,
     };
     try {
+      // eslint-disable-next-line
       const response = await getAddToCart(values);
       openNotification(selectedProductName);
       // message.success("added to cart");
@@ -96,7 +89,7 @@ const CategoryIndex = (props) => {
     notification.info({
       message: `Added to Cart `,
       description: `${selectedProductName}`,
-      placement: "topRight",
+      placement: 'topRight',
       top: 150,
     });
   };
@@ -105,120 +98,19 @@ const CategoryIndex = (props) => {
     <div>
       <div
         className="site-card-wrapper"
-        style={{ textAlign: "center", marginTop: "5%" }}
+        style={{ textAlign: 'center', marginTop: '5%' }}
       >
         <Spin spinning={loading}>
           {data.length > 0 ? (
-            <div>
-              <Row
-                gutter={[48, 24]}
-                justify="space-around"
-                style={{ margin: 0 }}
-              >
-                {data.map((item, i) => (
-                  <Col
-                    span={6}
-                    xs={24}
-                    sm={24}
-                    md={12}
-                    lg={12}
-                    xl={6}
-                    xxl={6}
-                    key={i}
-                  >
-                    <Card
-                      // hoverable
-                      className="product__card"
-                      bordered={false}
-                      style={{ marginTop: "20px" }}
-                      // onClick={() => console.log("CARD CLICK")}
-                    >
-                      {item.is_discount ? (
-                        <div className="product__discount__header">
-                          {item.discount}%
-                        </div>
-                      ) : null}
-                      <img
-                        style={{
-                          maxWidth: "100%",
-                          height: "200px",
-                        }}
-                        src={item.productImage}
-                      />
-                      <div className="product__name">{item.name}</div>
-
-                      <div
-                        className="product__price__container"
-                        style={{ marginTop: "3%" }}
-                      >
-                        {item.is_discount ? (
-                          <span>
-                            <span className="product__price__fixed">
-                              Rs{" "}
-                              {item.price - (item.price * item.discount) / 100}
-                            </span>
-                            <span
-                              style={{
-                                marginLeft: "4px",
-                                textDecoration: "line-through",
-                                color: "grey",
-                              }}
-                            >
-                              Rs {item.price}
-                            </span>
-                          </span>
-                        ) : (
-                          <span className="product__price__fixed">
-                            Rs {item.price}
-                          </span>
-                        )}
-                      </div>
-                      <div
-                        style={{
-                          marginTop: "3%",
-                          display: "flex",
-                          flexWrap: "wrap",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Button
-                          type="danger"
-                          style={{ marginRight: "10px" }}
-                          onClick={() => onAddToCartClick(item)}
-                          //className="addcart"
-                        >
-                          <ShoppingCartOutlined />
-                          Add To Cart
-                        </Button>
-
-                        <Button
-                          onClick={() => onGoToDetailsClick(item)}
-                          type="primary"
-                          //  className="addcart"
-                        >
-                          Details
-                        </Button>
-                      </div>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-
-              <div
-                style={{
-                  marginTop: "30px",
-                  marginBottom: "30px",
-                  textAlign: "center",
-                }}
-              >
-                <Pagination
-                  current={(offSet + limit) / limit}
-                  pageSize={limit}
-                  onChange={handlePageChange}
-                  total={count}
-                />
-              </div>
-            </div>
+            <CommonProduct
+              data={data}
+              onAddToCartClick={onAddToCartClick}
+              onGoToDetailsClick={onGoToDetailsClick}
+              offSet={offSet}
+              limit={limit}
+              handlePageChange={handlePageChange}
+              count={count}
+            />
           ) : (
             <Empty />
           )}

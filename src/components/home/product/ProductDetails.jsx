@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { getIndividualProductDetail, getAddToCart } from "../../../actions";
-import "./productDetail.css";
+import React, { useState, useEffect } from 'react';
+import { getIndividualProductDetail, getAddToCart } from '../../../actions';
+import './productDetail.css';
 
-import { Descriptions, Button, Rate, Modal, notification } from "antd";
+import { Descriptions, Button, Rate, Modal, notification } from 'antd';
 import {
   EditOutlined,
   ShareAltOutlined,
   PrinterOutlined,
-  PlusOutlined,
   PlusSquareOutlined,
   MinusSquareOutlined,
   ShoppingCartOutlined,
-} from "@ant-design/icons";
-import PrintComponent from "./PrintComponent";
-import Share from "./Share";
-import BackgroundBanner from "../../elements/BackgroundBanner";
-import { useSelector } from "react-redux";
+} from '@ant-design/icons';
+import PrintComponent from './PrintComponent';
+import Share from './Share';
+import BackgroundBanner from '../../elements/BackgroundBanner';
+import { useSelector } from 'react-redux';
 
 const ProductDetails = (props) => {
   //console.log(props.match.params.id);
@@ -62,6 +61,7 @@ const ProductDetails = (props) => {
       quantity: quantity,
     };
     try {
+      // eslint-disable-next-line
       const response = await getAddToCart(values);
       openNotification(selectedProductName);
       // message.success("added to cart");
@@ -72,7 +72,7 @@ const ProductDetails = (props) => {
     notification.info({
       message: `Added to Cart `,
       description: `Name :${selectedProductName}, Quantity: ${quantity}`,
-      placement: "topRight",
+      placement: 'topRight',
       top: 150,
     });
   };
@@ -80,7 +80,7 @@ const ProductDetails = (props) => {
   return (
     <div
       style={{
-        background: "#fff",
+        background: '#fff',
         //  height: "100vh"
       }}
     >
@@ -94,10 +94,10 @@ const ProductDetails = (props) => {
         <div className="productContainer__images">
           <div className="productContainer__imageContainer">
             <div className="productContainer__leftImage">
-              <img src={data.productImage} />
+              <img alt="" src={data.productImage} />
             </div>
             <div className="productContainer__rightImage">
-              <img src={data.productImage} />
+              <img alt="" src={data.productImage} />
             </div>
           </div>
         </div>
@@ -109,10 +109,10 @@ const ProductDetails = (props) => {
                 <span>
                   <span
                     style={{
-                      marginRight: "10px",
-                      textDecoration: "line-through",
-                      color: "grey",
-                      fontSize: "1.2em",
+                      marginRight: '10px',
+                      textDecoration: 'line-through',
+                      color: 'grey',
+                      fontSize: '1.2em',
                       fontWeight: 800,
                     }}
                   >
@@ -130,7 +130,7 @@ const ProductDetails = (props) => {
               {data.is_discount ? (
                 <span>
                   <span className="product__price__fixed">
-                    Rs{" "}
+                    Rs{' '}
                     {Math.round(
                       (data.price - (data.price * data.discount) / 100) *
                         quantity
@@ -148,34 +148,34 @@ const ProductDetails = (props) => {
               className="description__withoutLabel"
               span={3}
             >
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
-                <div style={{ margin: "auto 20px auto 0px" }}>
-                  <div style={{ display: "flex" }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                <div style={{ margin: 'auto 20px auto 0px' }}>
+                  <div style={{ display: 'flex' }}>
                     <div
                       style={{
-                        padding: "12px 14px",
-                        border: "1px solid black",
+                        padding: '12px 14px',
+                        border: '1px solid black',
                         fontWeight: 900,
                       }}
                     >
                       {quantity}
                     </div>
                     <div>
-                      <div style={{ display: "flex", flexFlow: "column" }}>
+                      <div style={{ display: 'flex', flexFlow: 'column' }}>
                         <div>
                           <PlusSquareOutlined
                             onClick={onIncreaseQuantityClick}
-                            style={{ fontSize: "25px", color: "#45ab67" }}
+                            style={{ fontSize: '25px', color: '#45ab67' }}
                           />
                         </div>
                         <div>
                           <MinusSquareOutlined
                             onClick={onDecreaseQuantityClick}
                             style={{
-                              fontSize: "25px",
-                              color: "red",
+                              fontSize: '25px',
+                              color: 'red',
                               cursor:
-                                quantity === 1 ? "not-allowed" : "pointer",
+                                quantity === 1 ? 'not-allowed' : 'pointer',
                             }}
                           />
                         </div>
@@ -183,10 +183,10 @@ const ProductDetails = (props) => {
                     </div>
                   </div>
                 </div>
-                <div style={{ margin: "auto 20px auto 0px" }}>
+                <div style={{ margin: 'auto 20px auto 0px' }}>
                   <Button
                     onClick={() => onAddToCartClick(data)}
-                    style={{ marginLeft: "20px" }}
+                    style={{ marginLeft: '20px' }}
                     type="danger"
                   >
                     <ShoppingCartOutlined /> Add to Cart
@@ -198,36 +198,36 @@ const ProductDetails = (props) => {
               <span>
                 <Rate allowHalf defaultValue={2.5} />
               </span>
-              <span style={{ marginLeft: "20px", cursor: "pointer" }}>
-                <EditOutlined style={{ color: "#FF8D37", fontSize: "17px" }} />
-                <span style={{ marginLeft: "5px", fontWeight: 700 }}>
-                  {" "}
+              <span style={{ marginLeft: '20px', cursor: 'pointer' }}>
+                <EditOutlined style={{ color: '#FF8D37', fontSize: '17px' }} />
+                <span style={{ marginLeft: '5px', fontWeight: 700 }}>
+                  {' '}
                   Write Review
                 </span>
               </span>
             </Descriptions.Item>
             <Descriptions.Item className="description__withoutLabel" span={3}>
-              <div style={{ display: "flex" }}>
+              <div style={{ display: 'flex' }}>
                 <div
                   onClick={() => setShareModalShow(true)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 >
                   <ShareAltOutlined
-                    style={{ color: "#FF8D37", fontSize: "17px" }}
+                    style={{ color: '#FF8D37', fontSize: '17px' }}
                   />
-                  <span style={{ marginLeft: "5px", fontWeight: 700 }}>
-                    {" "}
+                  <span style={{ marginLeft: '5px', fontWeight: 700 }}>
+                    {' '}
                     Share
                   </span>
                 </div>
                 <div>
                   <PrintComponent
                     trigerItem={
-                      <span style={{ marginLeft: "20px", cursor: "pointer" }}>
+                      <span style={{ marginLeft: '20px', cursor: 'pointer' }}>
                         <PrinterOutlined
-                          style={{ color: "#FF8D37", fontSize: "17px" }}
+                          style={{ color: '#FF8D37', fontSize: '17px' }}
                         />
-                        <span style={{ marginLeft: "5px", fontWeight: 700 }}>
+                        <span style={{ marginLeft: '5px', fontWeight: 700 }}>
                           Print
                         </span>
                       </span>
@@ -243,7 +243,7 @@ const ProductDetails = (props) => {
       {/* SHARE modal starts */}
       {shareModalShow === true ? (
         <Modal
-          style={{ minWidth: "600px" }}
+          style={{ minWidth: '600px' }}
           // title="Share"
           closable={false}
           footer={null}
