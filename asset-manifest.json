@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/ecommerce-multivendor/static/css/main.99619791.chunk.css",
-    "main.js": "/ecommerce-multivendor/static/js/main.89bf2a88.chunk.js",
-    "main.js.map": "/ecommerce-multivendor/static/js/main.89bf2a88.chunk.js.map",
+    "main.js": "/ecommerce-multivendor/static/js/main.f7e871b6.chunk.js",
+    "main.js.map": "/ecommerce-multivendor/static/js/main.f7e871b6.chunk.js.map",
     "runtime-main.js": "/ecommerce-multivendor/static/js/runtime-main.2ef180f9.js",
     "runtime-main.js.map": "/ecommerce-multivendor/static/js/runtime-main.2ef180f9.js.map",
     "static/css/2.cc47d00d.chunk.css": "/ecommerce-multivendor/static/css/2.cc47d00d.chunk.css",
-    "static/js/2.ff5cf136.chunk.js": "/ecommerce-multivendor/static/js/2.ff5cf136.chunk.js",
-    "static/js/2.ff5cf136.chunk.js.map": "/ecommerce-multivendor/static/js/2.ff5cf136.chunk.js.map",
+    "static/js/2.cd0f0181.chunk.js": "/ecommerce-multivendor/static/js/2.cd0f0181.chunk.js",
+    "static/js/2.cd0f0181.chunk.js.map": "/ecommerce-multivendor/static/js/2.cd0f0181.chunk.js.map",
     "index.html": "/ecommerce-multivendor/index.html",
-    "precache-manifest.712ff23a2731f5b498ebb1246f3a5a13.js": "/ecommerce-multivendor/precache-manifest.712ff23a2731f5b498ebb1246f3a5a13.js",
+    "precache-manifest.d0b77cbedc9a6d101a2ce442aa49fc1d.js": "/ecommerce-multivendor/precache-manifest.d0b77cbedc9a6d101a2ce442aa49fc1d.js",
     "service-worker.js": "/ecommerce-multivendor/service-worker.js",
     "static/css/2.cc47d00d.chunk.css.map": "/ecommerce-multivendor/static/css/2.cc47d00d.chunk.css.map",
     "static/css/main.99619791.chunk.css.map": "/ecommerce-multivendor/static/css/main.99619791.chunk.css.map",
-    "static/js/2.ff5cf136.chunk.js.LICENSE.txt": "/ecommerce-multivendor/static/js/2.ff5cf136.chunk.js.LICENSE.txt",
+    "static/js/2.cd0f0181.chunk.js.LICENSE.txt": "/ecommerce-multivendor/static/js/2.cd0f0181.chunk.js.LICENSE.txt",
     "static/media/bg-breadcrumb.jpg": "/ecommerce-multivendor/static/media/bg-breadcrumb.eba72506.jpg",
     "static/media/logo.png": "/ecommerce-multivendor/static/media/logo.87043a5e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2ef180f9.js",
     "static/css/2.cc47d00d.chunk.css",
-    "static/js/2.ff5cf136.chunk.js",
+    "static/js/2.cd0f0181.chunk.js",
     "static/css/main.99619791.chunk.css",
-    "static/js/main.89bf2a88.chunk.js"
+    "static/js/main.f7e871b6.chunk.js"
   ]
 }
