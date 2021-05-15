@@ -5,7 +5,7 @@ import AdminMenu from './AdminMenu';
 
 import NotFound from '../NotFound';
 
-const { Sider, Content } = Layout;
+const { Content } = Layout;
 
 const AdminIndex = (props) => {
   const userType =
@@ -18,10 +18,9 @@ const AdminIndex = (props) => {
     <>
       <div>
         {userType === 'admin' ? (
-          <Layout>
-            <Sider className="admin-sider" theme="light">
-              <AdminMenu />
-            </Sider>
+          <Layout style={{ height: '100vh' }}>
+            <AdminMenu />
+
             <Content
               className="site-layout-background"
               style={{

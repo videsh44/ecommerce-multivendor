@@ -8,39 +8,32 @@ import {
   Divider,
   message,
 } from 'antd';
-import { getProductsData, getProductDelete } from '../../../actions';
+import { getProductDelete, getProductsDataForAdmin } from '../../../actions';
 import AddNewProduct from './AddNewProduct';
 import EditProduct from './EditProduct';
 import { PlusCircleOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductIndex = () => {
-  const [productList, setProductList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const productDataAdmin = useSelector((state) => state.productDataAdmin);
+
   const [createNewModalShow, setCreateNewModalShow] = useState(false);
   const [loadAgain, setLoadAgain] = useState(false);
   const [selectedProductData, setSelectedProductData] = useState([]);
   const [editModalShow, setEditModalShow] = useState(false);
   const [offSet, setOffSet] = useState(0);
-  const [count, setCount] = useState(null);
+
   const limit = 6;
 
+  const { productData, loading, count } = productDataAdmin;
+
   useEffect(() => {
-    const callApi = async () => {
-      try {
-        setLoading(true);
-        const response = await getProductsData(limit, offSet);
-        //console.log(response.data.count);
-        setProductList(response.data.products);
-        setCount(response.data.count);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    };
-    callApi();
+    if (loading) dispatch(getProductsDataForAdmin(limit, offSet));
+
     return () => {};
     // eslint-disable-next-line
-  }, [loadAgain]);
+  }, [loading]);
 
   const columnName = [
     {
@@ -153,32 +146,19 @@ const ProductIndex = () => {
     setEditModalShow(true);
   };
 
-  const onDelete = async (item) => {
+  const onDelete = (item) => {
     try {
       let selectedId = item._id;
-      setLoading(true);
-      await getProductDelete(selectedId);
+
+      dispatch(getProductDelete(selectedId));
       message.success('Product Deleted');
-      setLoading(false);
-      setLoadAgain(!loadAgain);
-    } catch (error) {
-      setLoading(false);
-    }
+    } catch (error) {}
   };
 
   const handlePageChange = async (pageNumber) => {
     const temp_offset = pageNumber * limit - limit;
     setOffSet(temp_offset);
-    setLoading(true);
-    try {
-      const response = await getProductsData(limit, temp_offset);
-      // console.log(response.data.data);
-      setProductList(response.data.products);
-      setCount(response.data.count);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
+    dispatch(getProductsDataForAdmin(limit, temp_offset));
   };
 
   return (
@@ -191,9 +171,10 @@ const ProductIndex = () => {
       <div>
         <Table
           loading={loading}
-          dataSource={productList}
+          dataSource={productData}
           columns={columnName}
           pagination={false}
+          scroll={{ x: 1300 }}
           rowKey={(row) => row._id}
         />
       </div>

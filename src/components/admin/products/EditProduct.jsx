@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Select, Input, Button, message } from 'antd';
 import { getUpdateProduct } from '../../../actions';
 import { UploadOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
 
 const { Option } = Select;
 
 const EditProduct = (props) => {
+  const dispatch = useDispatch();
   const selectedProductData = props.selectedProductData;
   // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
@@ -15,15 +17,14 @@ const EditProduct = (props) => {
   const [isDiscount, setIsDiscount] = useState(
     selectedProductData.is_discount === true ? 'true' : 'false'
   );
-  const [discount, setDiscount] = useState(null);
+  const [discount, setDiscount] = useState(0);
   const [isIconFileUplaoded, setIsIconFileUplaoded] = useState(false);
   const [fileIconSrc, setFileIconSrc] = useState('');
   const [mediaIconFile, setMediaIconFile] = useState(null);
   const [productId, setProductId] = useState(null);
 
-  const [showChangeMediaIconButton, setShowChangeMediaIconButton] = useState(
-    true
-  );
+  const [showChangeMediaIconButton, setShowChangeMediaIconButton] =
+    useState(true);
   const [isIconFileChanged, setIsIconFileChanged] = useState(false);
 
   useEffect(() => {
@@ -166,11 +167,6 @@ const EditProduct = (props) => {
       return;
     }
 
-    if (!discount) {
-      message.warning('Please enter Product discount');
-      return;
-    }
-
     if (isIconFileChanged === true) {
       if (!mediaIconFile) {
         if (!selectedProductData.productImage) {
@@ -208,7 +204,7 @@ const EditProduct = (props) => {
 
     try {
       setLoading(true);
-      await getUpdateProduct(formValues, productId);
+      dispatch(getUpdateProduct(formValues, productId));
       setLoading(false);
       message.success('Product Updated');
       props.setEditModalShow(false);

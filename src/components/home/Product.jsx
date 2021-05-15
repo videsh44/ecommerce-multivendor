@@ -1,36 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { getProductsData, getAddToCart } from '../../actions';
 
-import { Spin, Empty, notification } from 'antd';
+import { Empty, notification } from 'antd';
 import history from '../../history';
 import './product.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CommonProduct from '../elements/CommonProduct';
 
+import SkeletonContainer from '../../elements/loader/SkeletonContainer';
+
 const Product = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
+  const products = useSelector((state) => state.products);
 
   const userId = user.userId;
 
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const { productData, loading, count } = products;
+
   const [offSet, setOffSet] = useState(0);
-  const [count, setCount] = useState(null);
   const limit = 8;
 
   useEffect(() => {
-    const callApi = async () => {
-      try {
-        setLoading(true);
-        const response = await getProductsData(limit, offSet);
-        setData(response.data.products);
-        setCount(response.data.count);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    };
-    callApi();
+    if (loading) dispatch(getProductsData(limit, offSet));
     return () => {};
     // eslint-disable-next-line
   }, []);
@@ -58,18 +50,10 @@ const Product = () => {
     history.push(`/product/${id}`);
   };
 
-  const handlePageChange = async (pageNumber) => {
-    const temp_offset = pageNumber * limit - limit;
+  const fetchData = async (pageNumber) => {
+    let temp_offset = offSet + limit;
     setOffSet(temp_offset);
-    setLoading(true);
-    try {
-      const response = await getProductsData(limit, temp_offset);
-      setData(response.data.products);
-      setCount(response.data.count);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
+    dispatch(getProductsData(limit, temp_offset));
   };
 
   const openNotification = (selectedProductName) => {
@@ -81,27 +65,36 @@ const Product = () => {
     });
   };
 
+  if (loading) {
+    return (
+      <div
+        className="site-card-wrapper"
+        style={{ textAlign: 'center', marginTop: '5%' }}
+      >
+        <SkeletonContainer />
+      </div>
+    );
+  }
+
   return (
     <>
       <div
         className="site-card-wrapper"
         style={{ textAlign: 'center', marginTop: '5%' }}
       >
-        <Spin spinning={loading}>
-          {data.length > 0 ? (
-            <CommonProduct
-              data={data}
-              onAddToCartClick={onAddToCartClick}
-              onGoToDetailsClick={onGoToDetailsClick}
-              offSet={offSet}
-              limit={limit}
-              handlePageChange={handlePageChange}
-              count={count}
-            />
-          ) : (
-            <Empty />
-          )}
-        </Spin>
+        {productData && productData.length > 0 ? (
+          <CommonProduct
+            data={productData}
+            onAddToCartClick={onAddToCartClick}
+            onGoToDetailsClick={onGoToDetailsClick}
+            offSet={offSet}
+            limit={limit}
+            fetchData={fetchData}
+            count={count}
+          />
+        ) : (
+          <Empty />
+        )}
       </div>
     </>
   );

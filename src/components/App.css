@@ -1,4 +1,4 @@
-@import "~antd/dist/antd.css";
+@import '~antd/dist/antd.css';
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -17,7 +17,7 @@
   background: #ff8c00;
 }
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .header {
@@ -68,7 +68,7 @@
   border-radius: 10px;
 }
 .menu {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
   color: #666;
   font-weight: 400;
@@ -91,7 +91,7 @@
   cursor: pointer;
   background: #222;
   color: #fff;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 1.3rem;
 }
 .addcart:hover {
@@ -126,8 +126,17 @@
   align-items: center;
 }
 
+.menu-brand-name {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: ui-monospace;
+}
+
 .logo__container {
   width: 20%;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: ui-monospace;
 }
 .app__logo {
   width: 100%;
@@ -176,7 +185,7 @@
   overflow: hidden;
 }
 .hvr-underline-from-left:before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: -1;
   left: 0;
@@ -209,7 +218,7 @@
   position: relative;
 }
 .hvr-outline-out:before {
-  content: "";
+  content: '';
   position: absolute;
   border: #e1e1e1 solid 4px;
   top: 0;
@@ -247,7 +256,7 @@
   pointer-events: none;
   position: absolute;
   z-index: -1;
-  content: "";
+  content: '';
   top: 100%;
   left: 5%;
   height: 10px;

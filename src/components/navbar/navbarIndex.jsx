@@ -6,15 +6,21 @@ import {
   MenuOutlined,
   CloseCircleOutlined,
 } from '@ant-design/icons';
-import { logo } from '../../assets/IconAssets';
+
 import ResponsiveMenu from 'react-responsive-navbar';
 import Dropdown, { MenuItem } from '@trendmicro/react-dropdown';
 import '@trendmicro/react-buttons/dist/react-buttons.css';
 import '@trendmicro/react-dropdown/dist/react-dropdown.css';
 import history from '../../history';
 import { Badge } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { onSelectCategoryAction } from '../../actions';
 
 const NavbarIndex = () => {
+  const dispatch = useDispatch();
+  const selectedCategory = useSelector(
+    (state) => state.productCategory.selectedCategory
+  );
   const [selectedDropdownMenuKey, setSelectedDropdownMenuKey] = useState(null);
 
   const userType =
@@ -39,9 +45,14 @@ const NavbarIndex = () => {
   ];
 
   const onCategoryClick = (cat) => {
-    let category = cat;
-    setSelectedDropdownMenuKey(cat);
-    history.push(`/product/category/${category}`);
+    if (selectedCategory === cat) {
+      setSelectedDropdownMenuKey(cat);
+      history.push(`/product/category/${cat}`);
+    } else {
+      setSelectedDropdownMenuKey(cat);
+      dispatch(onSelectCategoryAction(cat));
+      history.push(`/product/category/${cat}`);
+    }
   };
 
   const onAdminPageClick = () => {
@@ -53,9 +64,7 @@ const NavbarIndex = () => {
       <ResponsiveMenu
         menuOpenButton={
           <div className="small-menu-container">
-            <div className="menu-brand-name">
-              <img alt="" className="app__logo__small" src={logo} />
-            </div>
+            <div className="menu-brand-name">VIDESH G</div>
             <div>
               <MenuOutlined className="menu-icon-close-open" />{' '}
             </div>
@@ -63,9 +72,7 @@ const NavbarIndex = () => {
         }
         menuCloseButton={
           <div className="small-menu-container">
-            <div className="menu-brand-name">
-              <img alt="" className="app__logo__small" src={logo} />
-            </div>
+            <div className="menu-brand-name">VIDESH G</div>
 
             <div>
               <CloseCircleOutlined className="menu-icon-close-open" />
@@ -75,9 +82,7 @@ const NavbarIndex = () => {
         changeMenuOn="768px"
         menu={
           <div className="new__navbar__container">
-            <div className="logo__container">
-              <img alt="" className="app__logo" src={logo} />
-            </div>
+            <div className="logo__container">VIDESH G</div>
             <div className="menu__container">
               <div className="menu__item hvr-float-shadow">
                 <span

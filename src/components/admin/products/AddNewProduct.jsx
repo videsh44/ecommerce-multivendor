@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Select, Input, Button, message } from 'antd';
 import { getCreateNewProduct } from '../../../actions';
 import { UploadOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
 
 const AddNewProduct = (props) => {
+  const dispatch = useDispatch();
   // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
@@ -127,7 +129,7 @@ const AddNewProduct = (props) => {
 
     try {
       setLoading(true);
-      await getCreateNewProduct(formValues);
+      dispatch(getCreateNewProduct(formValues));
       setLoading(false);
       message.success('Product Created');
       props.setCreateNewModalShow(false);

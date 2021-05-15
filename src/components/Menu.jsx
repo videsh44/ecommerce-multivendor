@@ -101,21 +101,11 @@ const MenuIndex = (props) => {
         <Content
           className="site-layout"
           style={{
-            padding: '0 50px',
-            // marginTop: 48,
+            // padding: '0 50px',
             background: '#E5EFF4',
           }}
         >
-          <div
-            style={{
-              height: '100vh',
-              overflowY: 'auto',
-
-              //  border: "1px solid red"
-            }}
-          >
-            {props.children}
-          </div>
+          <div>{props.children}</div>
         </Content>
         <Footer
           style={{ textAlign: 'center', background: '#45AB67', color: '#fff' }}
