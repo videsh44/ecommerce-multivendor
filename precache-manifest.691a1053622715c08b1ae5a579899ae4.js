@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c3e450cfa85a90c09e0cf4dea26f25c6",
+    "revision": "3d53f924958c6ac27ea4744c936baa74",
     "url": "/ecommerce-multivendor/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ecommerce-multivendor/static/css/2.cc47d00d.chunk.css"
   },
   {
-    "revision": "bf724ae56f328d8d8177",
+    "revision": "723f8fa32d8f177d8968",
     "url": "/ecommerce-multivendor/static/css/main.129c217c.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ecommerce-multivendor/static/js/2.79dd6351.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bf724ae56f328d8d8177",
-    "url": "/ecommerce-multivendor/static/js/main.ad3dbbe8.chunk.js"
+    "revision": "723f8fa32d8f177d8968",
+    "url": "/ecommerce-multivendor/static/js/main.4b24975a.chunk.js"
   },
   {
     "revision": "5528e4345140129a0be6",
