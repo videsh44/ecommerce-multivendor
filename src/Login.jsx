@@ -20,13 +20,8 @@ const Login = (props) => {
     if (props.userAuth.isSignedIn) {
       const { cookies } = props;
       if (cookies) {
-        const {
-          Authorization,
-          isSignedIn,
-          userId,
-          user_type,
-          userName,
-        } = props.userAuth;
+        const { Authorization, isSignedIn, userId, user_type, userName } =
+          props.userAuth;
         cookies.set('Authorization', Authorization, { path: '/' });
         cookies.set('isSignedIn', isSignedIn, { path: '/' });
         cookies.set('userId', userId, { path: '/' });
@@ -90,11 +85,12 @@ const Login = (props) => {
       <Spin spinning={loading} tip="Loading...">
         <div
           style={{
-            backgroundImage:
-              "url('https://i.pinimg.com/originals/bc/27/60/bc27609dca848b8853968d5cf11e6692.jpg')",
-            width: '100%',
-            backgroundRepeat: 'repeat-x',
-            backgroundSize: 'cover',
+            // backgroundImage:
+            //   "url('https://i.pinimg.com/originals/bc/27/60/bc27609dca848b8853968d5cf11e6692.jpg')",
+            // width: '100%',
+            // backgroundRepeat: 'repeat-x',
+            // backgroundSize: 'cover',
+            background: '#E5EFF4',
             minHeight: '100vh',
           }}
         >
@@ -105,20 +101,20 @@ const Login = (props) => {
                 margin: '0px auto',
                 padding: '30px',
                 background: '#fff',
-                boxShadow: '-1px 4px 28px 0px rgba(0,0,0,0.75)',
+                boxShadow: '0px 5px 10px rgba(0,0,0,0.4)',
                 marginTop: '15%',
                 color: '#000',
               }}
             >
               {screenType === 'login' ? (
                 <div>
-                  <div style={{ textAlign: 'center' }}>
+                  {/* <div style={{ textAlign: 'center' }}>
                     <img
                       alt=""
                       src="https://img.icons8.com/carbon-copy/2x/login-rounded-right.png"
                       width="100px"
                     />
-                  </div>
+                  </div> */}
                   <div style={{ margin: '30px' }}>
                     <label>Username</label>
                     <Input

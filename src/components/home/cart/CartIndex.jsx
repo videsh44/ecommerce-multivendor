@@ -28,8 +28,6 @@ const CartIndex = () => {
 
   useEffect(() => {
     const callDataApi = async () => {
-      console.log(process.env.REACT_APP_RAZORPAY_ID);
-
       const response = await getCartData(userId);
       //  console.log(response.data);
       setData(response.data.cart);
@@ -109,8 +107,6 @@ const CartIndex = () => {
             const orderResponse = await getCreateOneOrder(hmari_values);
             await getCartDelete(selected_cart_id);
           }
-
-          console.log('captureResponse', captureResponse.status);
         } catch (err) {
           console.log(err);
         }

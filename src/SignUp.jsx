@@ -60,13 +60,13 @@ const SignUp = (props) => {
 
   return (
     <div>
-      <div style={{ textAlign: 'center' }}>
+      {/* <div style={{ textAlign: 'center' }}>
         <img
           alt=""
           src="https://cdn.onlinewebfonts.com/svg/img_511289.png"
           width="100px"
         />
-      </div>
+      </div> */}
       <div style={{ margin: '30px' }}>
         <label>Username</label>
         <Input
