@@ -173,8 +173,10 @@ const CartIndex = () => {
                     item.product.is_discount ? (
                       <span className="cart__product__price">
                         Rs{' '}
-                        {item.product.price -
-                          (item.product.price * item.product.discount) / 100}
+                        {Math.round(
+                          item.product.price -
+                            (item.product.price * item.product.discount) / 100
+                        )}
                       </span>
                     ) : (
                       <span className="cart__product__price">
@@ -190,9 +192,12 @@ const CartIndex = () => {
                     {item.product.is_discount ? (
                       <span>
                         Rs{' '}
-                        {(item.product.price -
-                          (item.product.price * item.product.discount) / 100) *
-                          item.quantity}
+                        {Math.round(
+                          (item.product.price -
+                            (item.product.price * item.product.discount) /
+                              100) *
+                            item.quantity
+                        )}
                       </span>
                     ) : (
                       <span>Rs {item.product.price * item.quantity}</span>
