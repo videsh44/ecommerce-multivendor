@@ -169,33 +169,28 @@ const CartIndex = () => {
                     />
                   }
                   title={
-                    <div style={{ fontSize: '18px', fontWeight: 700 }}>
+                    <div className="cart__product__name">
                       {item.product.name}
                     </div>
                   }
                   description={
                     item.product.is_discount ? (
-                      <span>
+                      <span className="cart__product__price">
                         Rs{' '}
                         {item.product.price -
                           (item.product.price * item.product.discount) / 100}
                       </span>
                     ) : (
-                      <span>Rs {item.product.price}</span>
+                      <span className="cart__product__price">
+                        Rs {item.product.price}
+                      </span>
                     )
                   }
                 />
 
                 <div style={{ display: 'flex' }}>
                   {/**TOTAL PRICE STARTS */}
-                  <div
-                    style={{
-                      marginRight: '80px',
-                      fontSize: '18px',
-                      color: '#C64E4E',
-                      fontWeight: 800,
-                    }}
-                  >
+                  <div className="cart__product__total__price">
                     {item.product.is_discount ? (
                       <span>
                         Rs{' '}
@@ -209,15 +204,7 @@ const CartIndex = () => {
                   </div>
                   {/**TOTAL PRICE ENDS */}
 
-                  <div
-                    style={{
-                      marginRight: '30px',
-                      fontSize: '18px',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {item.quantity}
-                  </div>
+                  <div className="cart__product__quantity">{item.quantity}</div>
 
                   <div>
                     <Button
@@ -226,7 +213,6 @@ const CartIndex = () => {
                       shape="round"
                     >
                       <ShoppingCartOutlined />
-                      Place Order
                     </Button>
                   </div>
                 </div>
@@ -249,6 +235,7 @@ const CartIndex = () => {
               style={{
                 display: 'flex',
                 justifyContent: 'space-evenly',
+                flexWrap: 'wrap',
               }}
             >
               <div className="bold__text">Total : </div>

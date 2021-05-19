@@ -3,15 +3,21 @@
   text-align: center;
   font-weight: 900;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ProductTitle {
   margin-bottom: 30px;
   color: #45ab67;
   font-weight: 900;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 1.8em;
   padding: 22px 0px 0px 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .productContainer {
@@ -26,6 +32,10 @@
 .productContainer__discription {
   width: 40%;
   padding: 30px;
+}
+
+.productContainer__discription__mobile {
+  display: none;
 }
 
 .productContainer__imageContainer {
@@ -78,5 +88,41 @@
 
   .productContainer__discription {
     width: 100%;
+    display: none;
+  }
+  .productContainer__imageContainer {
+    flex-flow: column;
+    text-align: center;
+  }
+
+  .productContainer__leftImage {
+    width: 100%;
+  }
+
+  .productContainer__rightImage {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .productContainer__rightImage img {
+    max-width: 230px;
+  }
+
+  .productContainer__discription__mobile {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .margin__bottom__30 {
+    margin-bottom: 30px;
+  }
+  .quantity__container__mobile {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 }

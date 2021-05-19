@@ -119,7 +119,10 @@ const ProductDetails = (props) => {
                     Rs {data.price}
                   </span>
                   <span className="product__price__fixed">
-                    Rs {data.price - (data.price * data.discount) / 100}
+                    Rs
+                    {Math.round(
+                      data.price - (data.price * data.discount) / 100
+                    )}
                   </span>
                 </span>
               ) : (
@@ -130,7 +133,7 @@ const ProductDetails = (props) => {
               {data.is_discount ? (
                 <span>
                   <span className="product__price__fixed">
-                    Rs{' '}
+                    Rs
                     {Math.round(
                       (data.price - (data.price * data.discount) / 100) *
                         quantity
@@ -201,7 +204,6 @@ const ProductDetails = (props) => {
               <span style={{ marginLeft: '20px', cursor: 'pointer' }}>
                 <EditOutlined style={{ color: '#FF8D37', fontSize: '17px' }} />
                 <span style={{ marginLeft: '5px', fontWeight: 700 }}>
-                  {' '}
                   Write Review
                 </span>
               </span>
@@ -216,7 +218,6 @@ const ProductDetails = (props) => {
                     style={{ color: '#FF8D37', fontSize: '17px' }}
                   />
                   <span style={{ marginLeft: '5px', fontWeight: 700 }}>
-                    {' '}
                     Share
                   </span>
                 </div>
@@ -238,12 +239,146 @@ const ProductDetails = (props) => {
             </Descriptions.Item>
           </Descriptions>
         </div>
+
+        {/**...............for mobile................ */}
+        <div className="productContainer__discription__mobile">
+          <div className="margin__bottom__30">
+            {data.is_discount ? (
+              <span>
+                <span
+                  style={{
+                    marginRight: '10px',
+                    textDecoration: 'line-through',
+                    color: 'grey',
+                    fontSize: '1.2em',
+                    fontWeight: 800,
+                  }}
+                >
+                  Rs {data.price}
+                </span>
+                <span className="product__price__fixed">
+                  Rs
+                  {Math.round(data.price - (data.price * data.discount) / 100)}
+                </span>
+              </span>
+            ) : (
+              <span className="product__price__fixed">Rs {data.price}</span>
+            )}
+          </div>
+
+          <div className="margin__bottom__30">
+            {data.is_discount ? (
+              <span>
+                <span className="product__price__fixed">
+                  Rs
+                  {Math.round(
+                    (data.price - (data.price * data.discount) / 100) * quantity
+                  )}
+                </span>
+              </span>
+            ) : (
+              <span className="product__price__fixed">
+                Rs {Math.round(data.price * quantity)}
+              </span>
+            )}
+          </div>
+
+          <div className="margin__bottom__30 quantity__container__mobile">
+            <div className="margin__bottom__30">
+              <div style={{ display: 'flex' }}>
+                <div
+                  style={{
+                    padding: '12px 14px',
+                    border: '1px solid black',
+                    fontWeight: 900,
+                  }}
+                >
+                  {quantity}
+                </div>
+                <div>
+                  <div style={{ display: 'flex', flexFlow: 'column' }}>
+                    <div>
+                      <PlusSquareOutlined
+                        onClick={onIncreaseQuantityClick}
+                        style={{ fontSize: '25px', color: '#45ab67' }}
+                      />
+                    </div>
+                    <div>
+                      <MinusSquareOutlined
+                        onClick={onDecreaseQuantityClick}
+                        style={{
+                          fontSize: '25px',
+                          color: 'red',
+                          cursor: quantity === 1 ? 'not-allowed' : 'pointer',
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="margin__bottom__30">
+              <Button
+                onClick={() => onAddToCartClick(data)}
+                style={{ marginLeft: '20px' }}
+                type="danger"
+              >
+                <ShoppingCartOutlined /> Add to Cart
+              </Button>
+            </div>
+          </div>
+
+          <div className="margin__bottom__30">
+            <span>
+              <Rate allowHalf defaultValue={2.5} />
+            </span>
+            <span style={{ marginLeft: '20px', cursor: 'pointer' }}>
+              <EditOutlined style={{ color: '#FF8D37', fontSize: '17px' }} />
+            </span>
+          </div>
+
+          <div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <div
+                onClick={() => setShareModalShow(true)}
+                style={{ cursor: 'pointer' }}
+              >
+                <ShareAltOutlined
+                  style={{ color: '#FF8D37', fontSize: '17px' }}
+                />
+                <span style={{ marginLeft: '5px', fontWeight: 700 }}>
+                  Share
+                </span>
+              </div>
+              <div>
+                <PrintComponent
+                  trigerItem={
+                    <span style={{ marginLeft: '20px', cursor: 'pointer' }}>
+                      <PrinterOutlined
+                        style={{ color: '#FF8D37', fontSize: '17px' }}
+                      />
+                      <span style={{ marginLeft: '5px', fontWeight: 700 }}>
+                        Print
+                      </span>
+                    </span>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* SHARE modal starts */}
       {shareModalShow === true ? (
         <Modal
-          style={{ minWidth: '600px' }}
+          style={{ minWidth: '300px' }}
           // title="Share"
           closable={false}
           footer={null}
